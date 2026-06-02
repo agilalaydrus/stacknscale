@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # 1. Frontend Next.js
+  stacknscale_frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sns_frontend
+    ports:
+      - "3000:3000"
+    restart: always
+    networks:
+      - sns_network
+    depends_on:
+      - stacknscale_backend
+
+  # 2. Backend Golang API
+  stacknscale_backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sns_backend
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      # Perhatikan: host-nya sekarang bukan 'localhost', tapi nama service database
+      - DB_DSN=host=stacknscale_db user=postgres password=supersecretpassword dbname=stacknscale_db port=5432 sslmode=disable
+    networks:
+      - sns_network
+    depends_on:
+      - stacknscale_db
+
+  # 3. Database PostgreSQL
+  stacknscale_db:
+    image: postgres:15-alpine
+    container_name: sns_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: supersecretpassword
+      POSTGRES_DB: stacknscale_db
+    ports:
+      - "5432:5432" # Anda bisa menutup port ini di production nanti agar tidak bisa diakses dari luar
+    volumes:
+      - pgdata_prod:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - sns_network
+
+volumes:
+  pgdata_prod:
+
+networks:
+  sns_network:
+    driver: bridge
