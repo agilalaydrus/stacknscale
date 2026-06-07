@@ -17,7 +17,7 @@ export const contentItems: ContentItem[] = [
     platform: 'tiktok',
     title: 'Contoh Konten TikTok',
     description: 'Deskripsi singkat tentang konten ini.',
-    url: 'https://www.tiktok.com/@stacknscale',
+    url: 'https://www.tiktok.com/@stacknscale.id',
     date: '2024-01-01',
   },
   // Instagram Reels
@@ -27,15 +27,6 @@ export const contentItems: ContentItem[] = [
     title: 'Contoh Reels Instagram',
     description: 'Deskripsi singkat tentang konten ini.',
     url: 'https://www.instagram.com/stacknscale.id',
-    date: '2024-01-01',
-  },
-  // YouTube
-  {
-    id: '3',
-    platform: 'youtube',
-    title: 'Contoh Video YouTube',
-    description: 'Deskripsi singkat tentang konten ini.',
-    url: 'https://www.youtube.com/@stacknscale',
     date: '2024-01-01',
   },
 ];
