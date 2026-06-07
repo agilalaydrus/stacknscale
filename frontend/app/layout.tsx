@@ -12,16 +12,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// UPDATE: SEO, Open Graph (Share Link Image), dan Favicon
 export const metadata: Metadata = {
   title: "StacknScale | IT & Cloud Consultant",
   description: "Layanan end-to-end audit IT, migrasi cloud, dan software development untuk skala Enterprise.",
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/logo.png', type: 'image/png' },
+      { url: '/logo-mark.png', type: 'image/png' },
     ],
-    apple: '/logo.png',
+    apple: '/logo-mark.png',
+    shortcut: '/logo-mark.png',
   },
   openGraph: {
     title: 'StacknScale | Strategic IT Solutions',
@@ -30,7 +29,7 @@ export const metadata: Metadata = {
     siteName: 'StacknScale',
     images: [
       {
-        url: '/og-image.jpg', // Memanggil gambar banner di folder public/
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
       },
@@ -48,19 +47,6 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}>
       <head>
-        {/* GOOGLE ANALYTICS */}
-        {/* TODO: Ganti tulisan G-XXXXXXXXXX di bawah ini dengan Measurement ID Google Analytics Anda */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-XXXXXXXXXX');
-            `,
-          }}
-        />
       </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

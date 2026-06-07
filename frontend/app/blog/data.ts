@@ -5,8 +5,8 @@ export type Article = {
   category: string;
   date: string;
   readingTime: string;
-  coverImage: string; // Replace with your image URL
-  content: string; // HTML string or plain text paragraphs
+  coverImage: string;
+  content: string;
 };
 
 export const articles: Article[] = [
@@ -17,7 +17,7 @@ export const articles: Article[] = [
     category: "Cloud",
     date: "15 Mei 2025",
     readingTime: "6 menit",
-    coverImage: "https://placehold.co/1200x630/1A1A2E/F8F7F4?text=Cloud+Migration", // ← Ganti URL gambar Anda
+    coverImage: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=1200&q=80",
     content: `
       <p>Pertanyaan ini sering muncul di awal sesi konsultasi kami: <strong>"Apa bedanya Cloud Lokal dan AWS?"</strong> Jawabannya sederhana dari sisi teknis, tapi luar biasa dari sisi keuangan.</p>
 
@@ -47,7 +47,7 @@ export const articles: Article[] = [
     category: "DevOps",
     date: "2 April 2025",
     readingTime: "8 menit",
-    coverImage: "https://placehold.co/1200x630/1A1A2E/7C3AED?text=Blue-Green+Deployment", // ← Ganti URL gambar Anda
+    coverImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80",
     content: `
       <p>Ketakutan terbesar klien saat mendengar kata "migrasi server" adalah downtime. Dan itu wajar — setiap menit sistem tidak bisa diakses berarti transaksi yang gagal, reputasi yang tercoreng, dan SLA yang dilanggar.</p>
 
@@ -74,7 +74,7 @@ export const articles: Article[] = [
     category: "Security",
     date: "18 Maret 2025",
     readingTime: "7 menit",
-    coverImage: "https://placehold.co/1200x630/1A1A2E/059669?text=Cyber+Security+Audit", // ← Ganti URL gambar Anda
+    coverImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80",
     content: `
       <p>Setelah melakukan puluhan audit keamanan untuk perusahaan skala menengah hingga enterprise, kami menemukan pola yang konsisten: celah yang sama terus muncul, bukan karena tim IT tidak kompeten, tapi karena mereka tidak punya waktu atau framework yang tepat untuk mendeteksinya.</p>
 
@@ -103,7 +103,7 @@ export const articles: Article[] = [
     category: "Architecture",
     date: "5 Februari 2025",
     readingTime: "10 menit",
-    coverImage: "https://placehold.co/1200x630/1A1A2E/F59E0B?text=Scalable+Architecture", // ← Ganti URL gambar Anda
+    coverImage: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?w=1200&q=80",
     content: `
       <p>Flash sale adalah ujian sesungguhnya untuk sebuah infrastruktur. Traffic bisa naik 1000x dalam hitungan menit, lalu turun kembali ke normal dalam beberapa jam. Tantangannya: bagaimana merancang sistem yang elastis — scale up cepat saat butuh, tidak boros biaya saat traffic normal.</p>
 

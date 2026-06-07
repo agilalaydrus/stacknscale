@@ -9,23 +9,20 @@ type Project = {
   title: string;
   caption: string;
   description: string;
-  image: string;       // ← Ganti dengan URL gambar Anda
-  link: string;        // ← URL project / case study / demo
+  image: string;
+  link: string;
   linkLabel: string;
   tags: string[];
   featured?: boolean;
 };
 
-// ============================================================
-// DATA PORTFOLIO — Ganti image URL dan detail sesuai project Anda
-// ============================================================
 const projects: Project[] = [
   {
     title: "Migrasi Cloud Fintech Cashplus",
     caption: "Local Cloud Migration · 2024",
     description:
       "Migrasi arsitektur sistem pembayaran dari AWS ke Cloud Lokal. Memangkas biaya operasional 40% tanpa downtime, menggunakan Blue-Green Deployment dan replikasi database real-time.",
-    image: "https://placehold.co/800x500/1A1A2E/7C3AED?text=Cashplus+Migration", // ← Ganti URL gambar
+    image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&q=80",
     link: "https://cashplus.id",
     linkLabel: "Kunjungi Cashplus",
     tags: ["Cloud Migration", "DevOps", "MySQL Replication"],
@@ -35,8 +32,8 @@ const projects: Project[] = [
     title: "Infrastruktur Flash Sale Puas.id",
     caption: "Scalable Architecture · 2024",
     description:
-      "Redesign total infrastruktur DevOps untuk menangani lonjakan traffic flash sale. Hasil: 0% downtime, response time < 200ms di puncak 1 juta request/menit.",
-    image: "https://placehold.co/800x500/1A1A2E/059669?text=Puas.id+Infrastructure", // ← Ganti URL gambar
+      "Redesign total infrastruktur DevOps untuk menangani lonjakan traffic flash sale. Hasil: 0% downtime, response time di bawah 200ms di puncak 1 juta request per menit.",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
     link: "https://puas.id",
     linkLabel: "Kunjungi Puas.id",
     tags: ["High Availability", "Auto-scaling", "Redis", "RabbitMQ"],
@@ -47,7 +44,7 @@ const projects: Project[] = [
     caption: "Private Cloud Architecture · 2023",
     description:
       "Konsultasi dan implementasi Private Cloud on-premise. Setup bare-metal server, virtualisasi dengan Proxmox, dan jaringan internal yang aman untuk operasional internal.",
-    image: "https://placehold.co/800x500/1A1A2E/F59E0B?text=Metroreload+Private+Cloud", // ← Ganti URL gambar
+    image: "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?w=800&q=80",
     link: "https://metroreload.biz",
     linkLabel: "Kunjungi Metroreload",
     tags: ["Private Cloud", "Proxmox", "Bare-metal", "Networking"],
@@ -57,7 +54,7 @@ const projects: Project[] = [
     caption: "Cyber Security Audit · 2024",
     description:
       "Audit menyeluruh pada sistem ERP klien enterprise. Ditemukan dan ditutup 12 celah kerentanan kritis. Implementasi standar keamanan kelas perbankan, hasil akhir: Grade A+.",
-    image: "https://placehold.co/800x500/1A1A2E/DC2626?text=Security+Audit", // ← Ganti URL gambar
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80",
     link: "/#audit-form",
     linkLabel: "Jadwalkan Audit",
     tags: ["Security Audit", "Penetration Testing", "Compliance"],
@@ -67,7 +64,7 @@ const projects: Project[] = [
     caption: "Product & DevOps · 2023",
     description:
       "Kolaborasi pengembangan platform cloud management Maxcloud. Kontribusi pada pipeline CI/CD, monitoring stack (Grafana + Prometheus), dan optimasi infrastruktur backend.",
-    image: "https://placehold.co/800x500/1A1A2E/0EA5E9?text=Maxcloud+Platform", // ← Ganti URL gambar
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     link: "https://maxcloud.id",
     linkLabel: "Kunjungi Maxcloud",
     tags: ["CI/CD", "Monitoring", "Grafana", "Kubernetes"],
@@ -76,8 +73,8 @@ const projects: Project[] = [
     title: "Sistem Integrasi Bisnis Multi-Platform",
     caption: "Business Integration · 2024",
     description:
-      "Merancang dan mengimplementasikan sistem integrasi antara ERP, CRM, dan platform e-commerce klien. Otomatisasi alur data real-time yang sebelumnya manual.",
-    image: "https://placehold.co/800x500/1A1A2E/8B5CF6?text=Business+Integration", // ← Ganti URL gambar
+      "Merancang dan mengimplementasikan sistem integrasi antara ERP, CRM, dan platform e-commerce klien. Otomatisasi alur data real-time yang sebelumnya dikerjakan secara manual.",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
     link: "/#audit-form",
     linkLabel: "Diskusikan Proyek Serupa",
     tags: ["System Integration", "API Gateway", "Automation", "ETL"],
