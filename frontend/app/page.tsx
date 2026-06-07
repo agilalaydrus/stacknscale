@@ -163,6 +163,7 @@ export default function StacknScaleLanding() {
               { href: "#services", label: "Layanan" },
               { href: "/portfolio", label: "Portfolio", isLink: true },
               { href: "/blog", label: "Blog", isLink: true },
+              { href: "/content", label: "Content", isLink: true },
               { href: "#faq", label: "FAQ" },
             ].map((item) => (
               item.isLink ? (
