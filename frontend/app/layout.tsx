@@ -17,7 +17,11 @@ export const metadata: Metadata = {
   title: "StacknScale | IT & Cloud Consultant",
   description: "Layanan end-to-end audit IT, migrasi cloud, dan software development untuk skala Enterprise.",
   icons: {
-    icon: '/favicon.ico', // Memanggil file favicon di folder public/
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/logo.png', type: 'image/png' },
+    ],
+    apple: '/logo.png',
   },
   openGraph: {
     title: 'StacknScale | Strategic IT Solutions',

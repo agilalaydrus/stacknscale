@@ -85,12 +85,12 @@ const projects: Project[] = [
 ];
 
 const tagColors = [
-  'bg-violet-50 text-violet-700 border-violet-200',
+  'bg-blue-50 text-blue-700 border-blue-200',
   'bg-sky-50 text-sky-700 border-sky-200',
   'bg-emerald-50 text-emerald-700 border-emerald-200',
   'bg-amber-50 text-amber-700 border-amber-200',
   'bg-rose-50 text-rose-700 border-rose-200',
-  'bg-indigo-50 text-indigo-700 border-indigo-200',
+  'bg-sky-50 text-sky-700 border-sky-200',
 ];
 
 const stats = [
@@ -107,26 +107,37 @@ export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-[#F8F7F4] text-[#1A1A2E]">
 
-      {/* HEADER */}
-      <header className="flex justify-between items-center px-6 lg:px-12 py-5 bg-[#F8F7F4]/90 backdrop-blur-md border-b border-stone-200/60 sticky top-0 z-50">
-        <Link href="/" className="text-xl font-bold tracking-tight text-[#1A1A2E] hover:opacity-75 transition-opacity">
-          Stackn<span className="text-violet-600">Scale</span>
-        </Link>
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-stone-500">
-          <Link href="/blog" className="hover:text-[#1A1A2E] transition-colors">Blog</Link>
-          <Link href="/portfolio" className="text-[#1A1A2E] font-semibold">Portfolio</Link>
-          <Link href="/#services" className="hover:text-[#1A1A2E] transition-colors">Layanan</Link>
-        </nav>
-        <Link href="/#audit-form" className="px-5 py-2.5 text-sm font-semibold bg-[#1A1A2E] text-[#F8F7F4] rounded-full hover:bg-violet-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-          Konsultasi Gratis
-        </Link>
+      {/* HEADER — floating glass pill */}
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl">
+        <div className="flex items-center justify-between gap-4 pl-3 pr-2 py-2 rounded-full border border-white/60 bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_-10px_rgba(11,19,48,0.12)]">
+          <Link href="/" className="flex items-center gap-2 group">
+            <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/10 to-sky-400/5 group-hover:from-blue-500/20 transition-all">
+              <img src="/logo-mark.png" alt="StacknScale" className="w-8 h-8 object-contain" />
+            </span>
+            <span className="hidden sm:inline-block text-[15px] font-extrabold tracking-tight text-[#0B1330] pr-2">
+              Stack<span className="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-sky-500">n</span>Scale
+            </span>
+          </Link>
+          <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-stone-600">
+            <Link href="/blog" className="px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all">Blog</Link>
+            <Link href="/portfolio" className="px-3.5 py-2 rounded-full text-[#0B1330] bg-stone-100/70 font-semibold">Portfolio</Link>
+            <Link href="/#services" className="px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all">Layanan</Link>
+          </nav>
+          <Link href="/#audit-form" className="group relative inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold bg-gradient-to-br from-[#0B1330] to-[#1E2647] text-white rounded-full hover:shadow-[0_8px_24px_-6px_rgba(11,19,48,0.5)] hover:-translate-y-0.5 transition-all duration-300">
+            <span>Konsultasi</span>
+            <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </Link>
+        </div>
       </header>
+      <div className="pt-24" />
 
       <main className="max-w-6xl mx-auto px-6 py-16">
 
         {/* PAGE HEADER */}
         <div className="text-center mb-16">
-          <p className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-3">Karya Terpilih</p>
+          <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">Karya Terpilih</p>
           <h1 className="text-4xl md:text-5xl font-extrabold text-[#1A1A2E] mb-5">Portfolio StacknScale</h1>
           <p className="text-stone-500 max-w-xl mx-auto text-lg leading-relaxed">
             Proyek nyata yang telah kami kerjakan — dari migrasi cloud, keamanan sistem, hingga arsitektur skala enterprise.
@@ -148,7 +159,7 @@ export default function PortfolioPage() {
           <h2 className="text-lg font-bold text-[#1A1A2E] mb-8">Proyek Unggulan</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {featured.map((project, idx) => (
-              <div key={idx} className="group rounded-3xl overflow-hidden bg-white border border-stone-100 shadow-sm hover:shadow-2xl hover:shadow-violet-100/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+              <div key={idx} className="group rounded-3xl overflow-hidden bg-white border border-stone-100 shadow-sm hover:shadow-2xl hover:shadow-blue-100/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
                 {/* Image */}
                 <div className="relative aspect-video overflow-hidden bg-[#1A1A2E]">
                   <img
@@ -163,7 +174,7 @@ export default function PortfolioPage() {
                 </div>
                 {/* Content */}
                 <div className="p-7 flex flex-col flex-1">
-                  <h3 className="text-xl font-bold text-[#1A1A2E] mb-3 group-hover:text-violet-700 transition-colors">
+                  <h3 className="text-xl font-bold text-[#1A1A2E] mb-3 group-hover:text-blue-700 transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-sm text-stone-500 leading-relaxed mb-5 flex-1">{project.description}</p>
@@ -180,7 +191,7 @@ export default function PortfolioPage() {
                     href={project.link}
                     target={project.link.startsWith('http') ? '_blank' : '_self'}
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-violet-600 hover:text-violet-800 transition-colors group/link"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors group/link"
                   >
                     {project.linkLabel}
                     <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -198,7 +209,7 @@ export default function PortfolioPage() {
           <h2 className="text-lg font-bold text-[#1A1A2E] mb-8">Semua Proyek</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {rest.map((project, idx) => (
-              <div key={idx} className="group rounded-3xl overflow-hidden bg-white border border-stone-100 shadow-sm hover:shadow-xl hover:shadow-violet-100/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+              <div key={idx} className="group rounded-3xl overflow-hidden bg-white border border-stone-100 shadow-sm hover:shadow-xl hover:shadow-blue-100/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                 {/* Image */}
                 <div className="relative aspect-video overflow-hidden bg-[#1A1A2E]">
                   <img
@@ -213,7 +224,7 @@ export default function PortfolioPage() {
                 </div>
                 {/* Content */}
                 <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-base font-bold text-[#1A1A2E] mb-2 group-hover:text-violet-700 transition-colors">
+                  <h3 className="text-base font-bold text-[#1A1A2E] mb-2 group-hover:text-blue-700 transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-sm text-stone-500 leading-relaxed mb-4 flex-1 line-clamp-3">{project.description}</p>
@@ -230,7 +241,7 @@ export default function PortfolioPage() {
                     href={project.link}
                     target={project.link.startsWith('http') ? '_blank' : '_self'}
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-bold text-violet-600 hover:text-violet-800 transition-colors group/link"
+                    className="inline-flex items-center gap-1.5 text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors group/link"
                   >
                     {project.linkLabel}
                     <svg className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -245,16 +256,16 @@ export default function PortfolioPage() {
 
         {/* CTA */}
         <div className="mt-20 p-10 md:p-14 rounded-3xl bg-[#1A1A2E] text-white text-center relative overflow-hidden">
-          <div className="absolute -top-16 -right-16 w-64 h-64 bg-violet-600/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-16 -right-16 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-sky-600/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10">
-            <p className="text-xs font-bold text-violet-400 uppercase tracking-widest mb-3">Wujudkan Proyek Anda</p>
+            <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">Wujudkan Proyek Anda</p>
             <h3 className="text-2xl md:text-3xl font-extrabold mb-4">Punya Proyek yang Ingin Kami Kerjakan?</h3>
             <p className="text-stone-400 mb-8 max-w-lg mx-auto text-sm leading-relaxed">
               Dari konsultasi awal hingga go-live, kami mendampingi setiap langkah. Mulai dengan sesi konsultasi gratis bersama tim kami.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/#audit-form" className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-violet-600 text-white font-bold rounded-full hover:bg-violet-500 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 text-sm">
+              <Link href="/#audit-form" className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-500 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 text-sm">
                 Mulai Konsultasi Gratis
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />

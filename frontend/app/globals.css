@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F8F7F4;
-  --foreground: #1A1A2E;
+  --background: #FAFAF8;
+  --foreground: #0B1330;
+  --brand-from: #3B82F6;
+  --brand-to: #60A5FA;
 }
 
 @theme inline {
@@ -45,6 +47,37 @@ body {
   .animate-fade-up {
     animation: fade-up 0.6s ease-out both;
   }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20px, -30px); }
+  }
+  .animate-float-slow {
+    animation: float-slow 14s ease-in-out infinite;
+  }
+
+  @keyframes float-slow-2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-30px, 20px); }
+  }
+  .animate-float-slow-2 {
+    animation: float-slow-2 18s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .animate-shimmer {
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
 }
 
 /* Smooth scroll */
@@ -64,5 +97,5 @@ html {
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #7C3AED;
+  background: #3B82F6;
 }

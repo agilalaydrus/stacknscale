@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 const categoryColors: Record<string, string> = {
   Cloud: 'bg-sky-50 text-sky-700 border-sky-200',
-  DevOps: 'bg-violet-50 text-violet-700 border-violet-200',
+  DevOps: 'bg-blue-50 text-blue-700 border-blue-200',
   Security: 'bg-emerald-50 text-emerald-700 border-emerald-200',
   Architecture: 'bg-amber-50 text-amber-700 border-amber-200',
 };
@@ -33,20 +33,31 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   return (
     <div className="min-h-screen bg-[#F8F7F4] text-[#1A1A2E]">
 
-      {/* HEADER */}
-      <header className="flex justify-between items-center px-6 lg:px-12 py-5 bg-[#F8F7F4]/90 backdrop-blur-md border-b border-stone-200/60 sticky top-0 z-50">
-        <Link href="/" className="text-xl font-bold tracking-tight text-[#1A1A2E] hover:opacity-75 transition-opacity">
-          Stackn<span className="text-violet-600">Scale</span>
-        </Link>
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-stone-500">
-          <Link href="/blog" className="text-[#1A1A2E] font-semibold">Blog</Link>
-          <Link href="/portfolio" className="hover:text-[#1A1A2E] transition-colors">Portfolio</Link>
-          <Link href="/#services" className="hover:text-[#1A1A2E] transition-colors">Layanan</Link>
-        </nav>
-        <Link href="/#audit-form" className="px-5 py-2.5 text-sm font-semibold bg-[#1A1A2E] text-[#F8F7F4] rounded-full hover:bg-violet-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-          Konsultasi Gratis
-        </Link>
+      {/* HEADER — floating glass pill */}
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl">
+        <div className="flex items-center justify-between gap-4 pl-3 pr-2 py-2 rounded-full border border-white/60 bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_-10px_rgba(11,19,48,0.12)]">
+          <Link href="/" className="flex items-center gap-2 group">
+            <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/10 to-sky-400/5 group-hover:from-blue-500/20 transition-all">
+              <img src="/logo-mark.png" alt="StacknScale" className="w-8 h-8 object-contain" />
+            </span>
+            <span className="hidden sm:inline-block text-[15px] font-extrabold tracking-tight text-[#0B1330] pr-2">
+              Stack<span className="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-sky-500">n</span>Scale
+            </span>
+          </Link>
+          <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-stone-600">
+            <Link href="/blog" className="px-3.5 py-2 rounded-full text-[#0B1330] bg-stone-100/70 font-semibold">Blog</Link>
+            <Link href="/portfolio" className="px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all">Portfolio</Link>
+            <Link href="/#services" className="px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all">Layanan</Link>
+          </nav>
+          <Link href="/#audit-form" className="group relative inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold bg-gradient-to-br from-[#0B1330] to-[#1E2647] text-white rounded-full hover:shadow-[0_8px_24px_-6px_rgba(11,19,48,0.5)] hover:-translate-y-0.5 transition-all duration-300">
+            <span>Konsultasi</span>
+            <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </Link>
+        </div>
       </header>
+      <div className="pt-24" />
 
       <main className="max-w-3xl mx-auto px-6 py-16">
 
@@ -87,7 +98,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         </div>
 
         {/* EXCERPT */}
-        <p className="text-lg text-stone-600 leading-relaxed mb-10 font-medium border-l-4 border-violet-400 pl-5 italic">
+        <p className="text-lg text-stone-600 leading-relaxed mb-10 font-medium border-l-4 border-blue-400 pl-5 italic">
           {article.excerpt}
         </p>
 
@@ -98,7 +109,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-4
             prose-p:text-stone-600 prose-p:leading-relaxed prose-p:mb-5
             prose-strong:text-[#1A1A2E]
-            prose-a:text-violet-600 prose-a:no-underline hover:prose-a:underline
+            prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
             prose-em:text-stone-500"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
@@ -108,12 +119,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         {/* CTA */}
         <div className="p-8 rounded-3xl bg-[#1A1A2E] text-white text-center relative overflow-hidden">
-          <div className="absolute -top-10 -right-10 w-40 h-40 bg-violet-600/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10">
-            <p className="text-xs font-bold text-violet-400 uppercase tracking-widest mb-2">Mari Diskusi</p>
+            <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">Mari Diskusi</p>
             <h3 className="text-xl font-extrabold mb-2">Punya Tantangan Serupa?</h3>
             <p className="text-stone-400 mb-6 text-sm">Tim StacknScale siap membantu.</p>
-            <Link href="/#audit-form" className="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 text-white font-bold rounded-full hover:bg-violet-500 hover:-translate-y-0.5 transition-all text-sm">
+            <Link href="/#audit-form" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-500 hover:-translate-y-0.5 transition-all text-sm">
               Konsultasi Gratis
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -136,7 +147,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     <span className={`inline-block px-2.5 py-0.5 text-[11px] font-bold border rounded-full mb-3 ${categoryColors[rel.category] ?? 'bg-stone-50 text-stone-600 border-stone-200'}`}>
                       {rel.category}
                     </span>
-                    <h4 className="text-sm font-bold text-[#1A1A2E] leading-snug group-hover:text-violet-700 transition-colors">{rel.title}</h4>
+                    <h4 className="text-sm font-bold text-[#1A1A2E] leading-snug group-hover:text-blue-700 transition-colors">{rel.title}</h4>
                   </div>
                 </Link>
               ))}

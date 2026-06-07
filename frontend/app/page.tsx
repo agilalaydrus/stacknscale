@@ -124,69 +124,101 @@ export default function StacknScaleLanding() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8F7F4] text-[#1A1A2E] font-sans selection:bg-violet-100 selection:text-violet-900 relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#FAFAF8] text-[#0B1330] font-sans selection:bg-blue-100 selection:text-blue-900 relative overflow-x-hidden">
+
+      {/* AMBIENT BACKDROP — soft floating aurora orbs */}
+      <div aria-hidden className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+        <div className="absolute -top-40 left-[10%] w-[480px] h-[480px] rounded-full bg-blue-200/40 blur-[120px] animate-float-slow" />
+        <div className="absolute top-[30%] right-[5%] w-[420px] h-[420px] rounded-full bg-sky-200/30 blur-[120px] animate-float-slow-2" />
+        <div className="absolute top-[70%] left-[20%] w-[380px] h-[380px] rounded-full bg-blue-100/50 blur-[120px] animate-float-slow" />
+      </div>
 
       {/* FLOATING WHATSAPP */}
       <a
         href="https://wa.me/6281283031003"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 z-[100] flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:scale-110 hover:-translate-y-1 transition-all duration-300"
+        className="fixed bottom-8 right-8 z-[100] flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-[0_10px_40px_-10px_rgba(37,211,102,0.6)] hover:scale-110 hover:-translate-y-1 transition-all duration-300"
         aria-label="Chat WhatsApp"
       >
-        <span className="absolute w-full h-full bg-[#25D366] rounded-full animate-ping opacity-40 -z-10"></span>
+        <span className="absolute w-full h-full bg-[#25D366] rounded-full animate-ping opacity-30 -z-10"></span>
         <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z" />
         </svg>
       </a>
 
-      {/* HEADER */}
-      <header className="flex justify-between items-center px-6 lg:px-12 py-5 bg-[#F8F7F4]/90 backdrop-blur-md border-b border-stone-200/60 sticky top-0 z-50">
-        <a href="#" className="text-xl font-bold tracking-tight text-[#1A1A2E] hover:opacity-75 transition-opacity">
-          Stackn<span className="text-violet-600">Scale</span>
-        </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-stone-500">
-          <a href="#services" className="hover:text-[#1A1A2E] transition-colors">Layanan</a>
-          <Link href="/portfolio" className="hover:text-[#1A1A2E] transition-colors">Portfolio</Link>
-          <Link href="/blog" className="hover:text-[#1A1A2E] transition-colors">Blog</Link>
-          <a href="#faq" className="hover:text-[#1A1A2E] transition-colors">FAQ</a>
-        </nav>
-        <a href="#audit-form" className="px-5 py-2.5 text-sm font-semibold bg-[#1A1A2E] text-[#F8F7F4] rounded-full hover:bg-violet-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-          Konsultasi Gratis
-        </a>
+      {/* HEADER — floating glass pill */}
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl">
+        <div className="flex items-center justify-between gap-4 pl-3 pr-2 py-2 rounded-full border border-white/60 bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_-10px_rgba(11,19,48,0.12)]">
+          <a href="#" className="flex items-center gap-2 group">
+            <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/10 to-sky-400/5 group-hover:from-blue-500/20 group-hover:to-sky-400/10 transition-all">
+              <img src="/logo-mark.png" alt="StacknScale" className="w-8 h-8 object-contain" />
+            </span>
+            <span className="hidden sm:inline-block text-[15px] font-extrabold tracking-tight text-[#0B1330] pr-2">
+              Stack<span className="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-sky-500">n</span>Scale
+            </span>
+          </a>
+          <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-stone-600">
+            {[
+              { href: "#services", label: "Layanan" },
+              { href: "/portfolio", label: "Portfolio", isLink: true },
+              { href: "/blog", label: "Blog", isLink: true },
+              { href: "#faq", label: "FAQ" },
+            ].map((item) => (
+              item.isLink ? (
+                <Link key={item.label} href={item.href} className="relative px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all duration-200">
+                  {item.label}
+                </Link>
+              ) : (
+                <a key={item.label} href={item.href} className="relative px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all duration-200">
+                  {item.label}
+                </a>
+              )
+            ))}
+          </nav>
+          <a href="#audit-form" className="group relative inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold bg-gradient-to-br from-[#0B1330] to-[#1E2647] text-white rounded-full hover:shadow-[0_8px_24px_-6px_rgba(11,19,48,0.5)] hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
+            <span className="relative z-10">Konsultasi</span>
+            <svg className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-full transition-all duration-700" />
+          </a>
+        </div>
       </header>
 
       {/* HERO */}
-      <section className="relative pt-28 pb-24 px-6 max-w-5xl mx-auto text-center">
-        {/* Soft background orb */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-violet-100/60 rounded-full blur-[100px] -z-10 pointer-events-none" />
-
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 text-xs font-semibold tracking-widest text-violet-700 uppercase bg-violet-50 border border-violet-200 rounded-full">
-          <span className="w-1.5 h-1.5 bg-violet-500 rounded-full animate-pulse" />
-          IT & Cloud Consulting Partner
+      <section className="relative pt-40 pb-28 px-6 max-w-5xl mx-auto text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 text-[11px] font-semibold tracking-[0.18em] text-blue-700 uppercase bg-white/70 backdrop-blur border border-blue-100 rounded-full shadow-sm">
+          <span className="relative flex w-2 h-2">
+            <span className="absolute inline-flex w-full h-full rounded-full bg-blue-500 opacity-60 animate-ping" />
+            <span className="relative inline-flex w-2 h-2 rounded-full bg-blue-500" />
+          </span>
+          IT &amp; Cloud Consulting Partner
         </div>
 
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-7 text-[#1A1A2E] leading-[1.1]">
+        <h1 className="text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold tracking-[-0.03em] mb-7 text-[#0B1330] leading-[1.02]">
           Stack the tech.<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-500">
+          <span className="text-transparent bg-clip-text bg-gradient-to-br from-blue-600 via-blue-500 to-sky-400">
             Scale the business.
           </span>
         </h1>
 
-        <p className="text-lg md:text-xl text-stone-500 mb-12 leading-relaxed max-w-2xl mx-auto">
-          Kami menjembatani gap antara visi bisnis dan eksekusi teknologi — dari infrastruktur server, migrasi cloud, hingga strategi scale-up yang berkelanjutan.
+        <p className="text-lg md:text-xl text-stone-500 mb-12 leading-relaxed max-w-2xl mx-auto font-light">
+          Kami menjembatani gap antara visi bisnis dan eksekusi teknologi —
+          dari infrastruktur server, migrasi cloud, hingga strategi scale-up yang berkelanjutan.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="#audit-form" className="inline-flex items-center gap-2 px-8 py-4 text-base font-bold bg-[#1A1A2E] text-[#F8F7F4] rounded-2xl hover:bg-violet-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
-            Mulai Audit IT Sekarang
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <a href="#audit-form" className="group relative inline-flex items-center gap-2 px-8 py-4 text-base font-semibold bg-gradient-to-br from-[#0B1330] to-[#1E2647] text-white rounded-2xl hover:shadow-[0_20px_50px_-12px_rgba(11,19,48,0.5)] hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+            <span className="relative z-10">Mulai Audit IT Sekarang</span>
+            <svg className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700" />
           </a>
-          <a href="#portfolio" className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-stone-600 hover:text-[#1A1A2E] transition-colors">
+          <a href="#portfolio" className="group inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-stone-600 hover:text-[#0B1330] transition-colors">
             Lihat Case Studies
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
             </svg>
           </a>
@@ -237,7 +269,7 @@ export default function StacknScaleLanding() {
       {/* SERVICES */}
       <section id="services" className="px-6 py-24 max-w-7xl mx-auto scroll-mt-20">
         <div className="text-center mb-16">
-          <p className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-3">Apa yang kami lakukan</p>
+          <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">Apa yang kami lakukan</p>
           <h2 className="text-4xl font-bold text-[#1A1A2E] mb-4">Layanan End-to-End</h2>
           <p className="text-stone-500 max-w-xl mx-auto leading-relaxed">Solusi komprehensif untuk menjawab setiap tantangan operasional teknologi dan pengembangan bisnis Anda.</p>
         </div>
@@ -245,9 +277,9 @@ export default function StacknScaleLanding() {
           {services.map((item, idx) => (
             <div
               key={idx}
-              className="group p-8 rounded-3xl bg-white border border-stone-100 shadow-sm hover:shadow-2xl hover:shadow-violet-100/50 hover:-translate-y-1.5 transition-all duration-300 cursor-default"
+              className="group p-8 rounded-3xl bg-white border border-stone-100 shadow-sm hover:shadow-2xl hover:shadow-blue-100/50 hover:-translate-y-1.5 transition-all duration-300 cursor-default"
             >
-              <div className="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center mb-6 group-hover:bg-violet-600 group-hover:text-white transition-all duration-300">
+              <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
                 {item.icon}
               </div>
               <h3 className="text-lg font-bold text-[#1A1A2E] mb-3">{item.title}</h3>
@@ -260,7 +292,7 @@ export default function StacknScaleLanding() {
       {/* CASE STUDIES */}
       <section id="portfolio" className="px-6 pb-24 max-w-7xl mx-auto scroll-mt-20">
         <div className="text-center mb-16">
-          <p className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-3">Portfolio</p>
+          <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">Portfolio</p>
           <h2 className="text-4xl font-bold text-[#1A1A2E] mb-4">Dampak Nyata yang Kami Berikan</h2>
           <p className="text-stone-500 max-w-xl mx-auto leading-relaxed">Bagaimana arsitektur kami membantu klien mencapai efisiensi dan keamanan skala Enterprise.</p>
         </div>
@@ -268,16 +300,16 @@ export default function StacknScaleLanding() {
           {caseStudies.map((item, idx) => (
             <div key={idx} className="group relative p-8 rounded-3xl bg-[#1A1A2E] text-white border border-white/5 overflow-hidden hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300">
               {/* Gradient orb */}
-              <div className="absolute -top-12 -right-12 w-40 h-40 bg-violet-600/20 rounded-full blur-3xl group-hover:bg-violet-500/30 transition-colors duration-500 pointer-events-none" />
+              <div className="absolute -top-12 -right-12 w-40 h-40 bg-blue-600/20 rounded-full blur-3xl group-hover:bg-blue-500/30 transition-colors duration-500 pointer-events-none" />
               <div className="relative z-10">
-                <span className="inline-block px-3 py-1 mb-6 text-[11px] font-bold tracking-wider text-violet-300 uppercase bg-violet-900/50 border border-violet-800/50 rounded-full">
+                <span className="inline-block px-3 py-1 mb-6 text-[11px] font-bold tracking-wider text-blue-300 uppercase bg-blue-900/50 border border-blue-800/50 rounded-full">
                   {item.tag}
                 </span>
                 <h3 className="text-lg font-semibold text-stone-200 mb-3">{item.title}</h3>
                 <div className="mb-1">
-                  <span className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-300">{item.metric}</span>
+                  <span className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-300">{item.metric}</span>
                 </div>
-                <p className="text-sm font-semibold text-violet-400 mb-5">{item.metricLabel}</p>
+                <p className="text-sm font-semibold text-blue-400 mb-5">{item.metricLabel}</p>
                 <p className="text-sm text-stone-400 leading-relaxed">{item.desc}</p>
               </div>
             </div>
@@ -288,7 +320,7 @@ export default function StacknScaleLanding() {
       {/* PROCESS / HOW IT WORKS */}
       <section className="px-6 pb-24 max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <p className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-3">Cara Kami Bekerja</p>
+          <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">Cara Kami Bekerja</p>
           <h2 className="text-4xl font-bold text-[#1A1A2E] mb-4">Proses yang Sederhana</h2>
           <p className="text-stone-500 max-w-xl mx-auto">Dari konsultasi pertama hingga sistem berjalan, kami mendampingi setiap langkah.</p>
         </div>
@@ -310,7 +342,7 @@ export default function StacknScaleLanding() {
       {/* FAQ */}
       <section id="faq" className="px-6 pb-24 max-w-3xl mx-auto scroll-mt-20">
         <div className="text-center mb-12">
-          <p className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-3">FAQ</p>
+          <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">FAQ</p>
           <h2 className="text-4xl font-bold text-[#1A1A2E] mb-4">Pertanyaan Umum</h2>
           <p className="text-stone-500">Jawaban singkat sebelum kita mulai berbicara lebih dalam.</p>
         </div>
@@ -322,7 +354,7 @@ export default function StacknScaleLanding() {
                 className="w-full px-6 py-5 text-left font-semibold text-[#1A1A2E] flex justify-between items-center hover:bg-stone-50 focus:outline-none transition-colors"
               >
                 <span className="pr-4 text-sm md:text-base">{faq.q}</span>
-                <span className={`text-violet-500 flex-shrink-0 transition-transform duration-300 ${openFaq === idx ? 'rotate-45' : ''}`}>
+                <span className={`text-blue-500 flex-shrink-0 transition-transform duration-300 ${openFaq === idx ? 'rotate-45' : ''}`}>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                   </svg>
@@ -340,11 +372,11 @@ export default function StacknScaleLanding() {
       <section id="audit-form" className="px-6 pb-24 max-w-3xl mx-auto scroll-mt-20">
         <div className="relative p-8 md:p-12 rounded-3xl bg-white border border-stone-100 shadow-2xl shadow-stone-200/50 overflow-hidden">
           {/* Decorative corner orb */}
-          <div className="absolute -top-16 -right-16 w-56 h-56 bg-violet-100/80 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-indigo-50/80 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-16 -right-16 w-56 h-56 bg-blue-100/80 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-sky-50/80 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative text-center mb-10">
-            <p className="text-xs font-bold text-violet-600 uppercase tracking-widest mb-3">Mari Mulai</p>
+            <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">Mari Mulai</p>
             <h2 className="text-3xl font-extrabold text-[#1A1A2E] mb-3">Konsultasikan Bisnis Anda</h2>
             <p className="text-stone-500">Isi detail di bawah ini dan kami akan menghubungi Anda via WhatsApp dalam 1x24 jam.</p>
           </div>
@@ -364,26 +396,26 @@ export default function StacknScaleLanding() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
                   <label className="text-sm font-semibold text-[#1A1A2E]">Nama Lengkap</label>
-                  <input required name="name" type="text" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-[#1A1A2E] text-sm placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-violet-400 focus:bg-white transition-all" placeholder="Budi Santoso" />
+                  <input required name="name" type="text" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-[#1A1A2E] text-sm placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-white transition-all" placeholder="Budi Santoso" />
                 </div>
                 <div className="space-y-1.5">
                   <label className="text-sm font-semibold text-[#1A1A2E]">Email Profesional</label>
-                  <input required name="email" type="email" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-[#1A1A2E] text-sm placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-violet-400 focus:bg-white transition-all" placeholder="budi@perusahaan.com" />
+                  <input required name="email" type="email" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-[#1A1A2E] text-sm placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-white transition-all" placeholder="budi@perusahaan.com" />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
                   <label className="text-sm font-semibold text-[#1A1A2E]">Instansi / Perusahaan</label>
-                  <input required name="company" type="text" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-[#1A1A2E] text-sm placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-violet-400 focus:bg-white transition-all" placeholder="PT Sukses Makmur" />
+                  <input required name="company" type="text" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-[#1A1A2E] text-sm placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-white transition-all" placeholder="PT Sukses Makmur" />
                 </div>
                 <div className="space-y-1.5">
                   <label className="text-sm font-semibold text-[#1A1A2E]">Nomor WhatsApp Aktif</label>
-                  <input required name="whatsapp" type="tel" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-[#1A1A2E] text-sm placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-violet-400 focus:bg-white transition-all" placeholder="081234567890" />
+                  <input required name="whatsapp" type="tel" className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-[#1A1A2E] text-sm placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-white transition-all" placeholder="081234567890" />
                 </div>
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-semibold text-[#1A1A2E]">Ceritakan Kebutuhan Utama Anda</label>
-                <textarea required name="problem" rows={4} className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-[#1A1A2E] text-sm placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-violet-400 focus:bg-white transition-all resize-none" placeholder="Apakah Anda butuh audit, migrasi cloud untuk hemat biaya, atau pembangunan sistem baru? Ceritakan kondisi saat ini..."></textarea>
+                <textarea required name="problem" rows={4} className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-[#1A1A2E] text-sm placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-white transition-all resize-none" placeholder="Apakah Anda butuh audit, migrasi cloud untuk hemat biaya, atau pembangunan sistem baru? Ceritakan kondisi saat ini..."></textarea>
               </div>
 
               {submitStatus === 'error' && (
@@ -395,7 +427,7 @@ export default function StacknScaleLanding() {
               <button
                 disabled={isSubmitting}
                 type="submit"
-                className="w-full bg-[#1A1A2E] hover:bg-violet-700 text-white font-bold rounded-xl py-4 text-sm transition-all duration-200 disabled:opacity-50 hover:shadow-xl hover:-translate-y-0.5"
+                className="w-full bg-[#1A1A2E] hover:bg-blue-700 text-white font-bold rounded-xl py-4 text-sm transition-all duration-200 disabled:opacity-50 hover:shadow-xl hover:-translate-y-0.5"
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center gap-2">
@@ -417,8 +449,8 @@ export default function StacknScaleLanding() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-12">
             <div>
-              <div className="text-2xl font-extrabold tracking-tight mb-2">
-                Stackn<span className="text-violet-400">Scale</span>
+              <div className="mb-4">
+                <img src="/logo-white.png" alt="StacknScale" className="h-14 w-auto" />
               </div>
               <p className="text-stone-400 text-sm max-w-xs leading-relaxed">Sistem yang aman. Bisnis yang tenang. Kami hadir untuk jangka panjang.</p>
             </div>
