@@ -10,6 +10,8 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# Remove old default favicon so icon.png (our logo) takes priority
+RUN rm -f app/favicon.ico
 # Disable telemetry Next.js
 ENV NEXT_TELEMETRY_DISABLED 1
 RUN npm run build
