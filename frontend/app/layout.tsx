@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "StacknScale | IT & Cloud Consultant",
-  description: "Layanan end-to-end audit IT, migrasi cloud, dan software development untuk skala Enterprise.",
+  description: "Konsultan IT untuk audit sistem, migrasi cloud lokal, dan pengembangan software. 7+ tahun pengalaman.",
   icons: {
     icon: [
       { url: '/logo-mark.png', type: 'image/png' },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'StacknScale | Strategic IT Solutions',
-    description: 'Sistem yang aman. Bisnis yang tenang. Konsultasikan arsitektur IT Anda bersama kami.',
+    description: 'Konsultan IT yang bantu bisnis punya infrastruktur kuat dan biaya cloud yang masuk akal.',
     url: 'https://stacknscale.id',
     siteName: 'StacknScale',
     images: [

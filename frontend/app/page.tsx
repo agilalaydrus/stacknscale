@@ -48,9 +48,9 @@ export default function StacknScaleLanding() {
   const marqueeItems = [...partnerLogos, ...partnerLogos, ...partnerLogos];
 
   const faqs = [
-    { q: "Berapa lama rata-rata proses Audit IT berlangsung?", a: "Tergantung skala infrastruktur Anda. Untuk skala menengah, audit komprehensif memakan waktu 1 hingga 2 minggu kerja, yang diakhiri dengan laporan kerentanan dan rekomendasi arsitektur." },
-    { q: "Apakah migrasi Cloud Lokal akan menyebabkan downtime server?", a: "Kami menggunakan metodologi Blue-Green Deployment dan arsitektur High Availability. Artinya, migrasi dilakukan di latar belakang secara paralel sehingga downtime dapat ditekan hingga nyaris 0%." },
-    { q: "Apakah StacknScale hanya melayani perusahaan besar?", a: "Kami melayani perusahaan skala menengah hingga Enterprise, serta startup yang sedang dalam fase growth/scale-up dan membutuhkan fondasi sistem yang tidak mudah runtuh saat traffic melonjak." },
+    { q: "Berapa lama proses Audit IT?", a: "Tergantung skala infrastruktur. Untuk perusahaan menengah, biasanya 1 sampai 2 minggu kerja. Hasilnya berupa laporan kerentanan lengkap dan rekomendasi perbaikan." },
+    { q: "Migrasi cloud bikin downtime gak?", a: "Kami pakai Blue-Green Deployment, jadi migrasi jalan paralel di background. Downtime bisa ditekan sampai nyaris nol." },
+    { q: "StacknScale cuma untuk perusahaan besar?", a: "Tidak. Kami juga banyak kerja bareng startup yang lagi growth dan butuh fondasi sistem yang kuat sebelum traffic melonjak." },
   ];
 
   const services = [
@@ -61,7 +61,7 @@ export default function StacknScaleLanding() {
         </svg>
       ),
       title: "IT & Application Audit",
-      desc: "Mengevaluasi celah keamanan, inefisiensi, dan performa pada infrastruktur maupun perangkat lunak yang sedang berjalan.",
+      desc: "Cek kondisi sistem Anda sekarang. Kami temukan celah keamanan, bottleneck performa, dan bagian yang boros resource.",
     },
     {
       icon: (
@@ -70,7 +70,7 @@ export default function StacknScaleLanding() {
         </svg>
       ),
       title: "Local Cloud Migration",
-      desc: "Migrasi efisiensi biaya dari Cloud Internasional ke Cloud Lokal. Kemampuan setara, biaya jauh lebih hemat.",
+      desc: "Pindah dari AWS/GCP ke cloud lokal tanpa drama. Performa tetap oke, tagihan bulanan bisa turun sampai 40%.",
     },
     {
       icon: (
@@ -79,7 +79,7 @@ export default function StacknScaleLanding() {
         </svg>
       ),
       title: "Private Cloud Architecture",
-      desc: "Konsultasi, pengadaan perangkat keras (server), hingga setup arsitektur Private Cloud eksklusif untuk keamanan internal.",
+      desc: "Butuh cloud sendiri? Kami bantu dari konsultasi, pengadaan server, sampai setup arsitektur yang jalan di data center Anda.",
     },
     {
       icon: (
@@ -88,7 +88,7 @@ export default function StacknScaleLanding() {
         </svg>
       ),
       title: "DevOps & Cyber Security",
-      desc: "Layanan menyeluruh untuk Software Development, otomatisasi DevOps, hingga perlindungan dari ancaman digital.",
+      desc: "CI/CD pipeline, container orchestration, penetration testing, dan monitoring. Sistem Anda jalan otomatis dan tetap aman.",
     },
     {
       icon: (
@@ -97,7 +97,7 @@ export default function StacknScaleLanding() {
         </svg>
       ),
       title: "Project & Product Management",
-      desc: "Mengawal pengembangan sistem agar delivery tepat waktu, sesuai anggaran, dan menjawab kebutuhan market.",
+      desc: "Kami kawal dari planning sampai delivery. Biar project gak molor, budget gak bengkak, dan hasilnya sesuai kebutuhan.",
     },
     {
       icon: (
@@ -106,20 +106,20 @@ export default function StacknScaleLanding() {
         </svg>
       ),
       title: "Business Analysis & Development",
-      desc: "Memadukan teknologi dengan strategi. Menganalisis proses bisnis, menyusun visi, hingga eksekusi strategi scale-up.",
+      desc: "Analisis proses bisnis, cari peluang efisiensi, dan susun roadmap pertumbuhan. Teknologi jadi pengungkit, bukan beban.",
     },
   ];
 
   const caseStudies = [
-    { tag: "Fintech / Payment", title: "Local Cloud Migration", metric: "40%", metricLabel: "Cost Saved", desc: "Memigrasikan arsitektur sistem pembayaran dari Cloud Internasional ke Lokal — mengurangi biaya operasional tanpa mengorbankan performa." },
-    { tag: "High-Traffic E-Commerce", title: "Arsitektur Skalabilitas", metric: "0%", metricLabel: "Downtime", desc: "Redesign infrastruktur DevOps untuk menangani jutaan request per menit saat flash sale, berjalan sangat mulus." },
-    { tag: "Enterprise System", title: "Audit & Cyber Security", metric: "A+", metricLabel: "Security Grade", desc: "Audit menyeluruh, menutup celah kerentanan fatal, dan mengimplementasikan standar keamanan kelas perbankan." },
+    { tag: "Fintech / Payment", title: "Migrasi ke Cloud Lokal", metric: "37%", metricLabel: "Hemat Biaya Bulanan", desc: "Pindah dari AWS ke cloud provider lokal untuk sistem payment gateway. Latency tetap di bawah 50ms, biaya turun signifikan." },
+    { tag: "E-Commerce", title: "Infrastruktur Flash Sale", metric: "12rb", metricLabel: "Request/detik Tertangani", desc: "Redesign arsitektur biar kuat handle lonjakan traffic saat campaign besar. Sebelumnya sering 502, sekarang lancar." },
+    { tag: "Enterprise", title: "Audit Keamanan Sistem", metric: "23", metricLabel: "Celah Ditemukan & Ditutup", desc: "Full audit untuk sistem internal perusahaan. Ditemukan 23 vulnerability, termasuk 4 yang kritikal. Semua sudah di-patch." },
   ];
 
   const stats = [
     { value: "40+", label: "Klien Terlayani" },
     { value: "99.9%", label: "Uptime Rata-Rata" },
-    { value: "5 Tahun", label: "Pengalaman" },
+    { value: "7+", label: "Tahun Pengalaman" },
     { value: "24/7", label: "Support & Monitoring" },
   ];
 
@@ -205,8 +205,8 @@ export default function StacknScaleLanding() {
         </h1>
 
         <p className="text-lg md:text-xl text-stone-500 mb-12 leading-relaxed max-w-2xl mx-auto font-light">
-          Kami menjembatani gap antara visi bisnis dan eksekusi teknologi —
-          dari infrastruktur server, migrasi cloud, hingga strategi scale-up yang berkelanjutan.
+          Konsultan IT yang bantu bisnis Anda punya infrastruktur kuat,
+          biaya cloud yang masuk akal, dan sistem yang siap scale kapan saja.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -241,7 +241,7 @@ export default function StacknScaleLanding() {
       {/* PARTNERS MARQUEE */}
       <section className="py-14 border-b border-[#1A1A2E]/10 bg-[#1A1A2E] overflow-hidden">
         <p className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-10 text-center px-6">
-          Strategic Partners & Clients We've Empowered
+          Dipercaya oleh
         </p>
         <div className="w-full relative flex overflow-hidden items-center min-h-[72px]">
           <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#1A1A2E] to-transparent z-10 pointer-events-none" />
@@ -272,7 +272,7 @@ export default function StacknScaleLanding() {
         <div className="text-center mb-16">
           <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">Apa yang kami lakukan</p>
           <h2 className="text-4xl font-bold text-[#1A1A2E] mb-4">Layanan End-to-End</h2>
-          <p className="text-stone-500 max-w-xl mx-auto leading-relaxed">Solusi komprehensif untuk menjawab setiap tantangan operasional teknologi dan pengembangan bisnis Anda.</p>
+          <p className="text-stone-500 max-w-xl mx-auto leading-relaxed">Satu tim untuk semua kebutuhan IT Anda, dari audit sampai eksekusi.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((item, idx) => (
@@ -295,24 +295,20 @@ export default function StacknScaleLanding() {
         <div className="text-center mb-16">
           <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">Portfolio</p>
           <h2 className="text-4xl font-bold text-[#1A1A2E] mb-4">Dampak Nyata yang Kami Berikan</h2>
-          <p className="text-stone-500 max-w-xl mx-auto leading-relaxed">Bagaimana arsitektur kami membantu klien mencapai efisiensi dan keamanan skala Enterprise.</p>
+          <p className="text-stone-500 max-w-xl mx-auto leading-relaxed">Bukan janji kosong. Ini hasil kerja nyata bersama klien kami.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {caseStudies.map((item, idx) => (
-            <div key={idx} className="group relative p-8 rounded-3xl bg-[#1A1A2E] text-white border border-white/5 overflow-hidden hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300">
-              {/* Gradient orb */}
-              <div className="absolute -top-12 -right-12 w-40 h-40 bg-blue-600/20 rounded-full blur-3xl group-hover:bg-blue-500/30 transition-colors duration-500 pointer-events-none" />
-              <div className="relative z-10">
-                <span className="inline-block px-3 py-1 mb-6 text-[11px] font-bold tracking-wider text-blue-300 uppercase bg-blue-900/50 border border-blue-800/50 rounded-full">
-                  {item.tag}
-                </span>
-                <h3 className="text-lg font-semibold text-stone-200 mb-3">{item.title}</h3>
-                <div className="mb-1">
-                  <span className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-300">{item.metric}</span>
-                </div>
-                <p className="text-sm font-semibold text-blue-400 mb-5">{item.metricLabel}</p>
-                <p className="text-sm text-stone-400 leading-relaxed">{item.desc}</p>
+            <div key={idx} className="group p-8 rounded-2xl bg-white border border-stone-200 hover:border-stone-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <span className="inline-block px-3 py-1 mb-5 text-[11px] font-semibold tracking-wider text-stone-500 uppercase bg-stone-100 rounded-full">
+                {item.tag}
+              </span>
+              <h3 className="text-base font-semibold text-[#1A1A2E] mb-4">{item.title}</h3>
+              <div className="flex items-baseline gap-2 mb-1">
+                <span className="text-4xl font-extrabold text-[#1A1A2E]">{item.metric}</span>
               </div>
+              <p className="text-sm font-medium text-blue-600 mb-4">{item.metricLabel}</p>
+              <p className="text-sm text-stone-500 leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -323,13 +319,13 @@ export default function StacknScaleLanding() {
         <div className="text-center mb-16">
           <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">Cara Kami Bekerja</p>
           <h2 className="text-4xl font-bold text-[#1A1A2E] mb-4">Proses yang Sederhana</h2>
-          <p className="text-stone-500 max-w-xl mx-auto">Dari konsultasi pertama hingga sistem berjalan, kami mendampingi setiap langkah.</p>
+          <p className="text-stone-500 max-w-xl mx-auto">Tiga langkah. Tanpa ribet.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { step: "01", title: "Konsultasi & Audit", desc: "Kami memahami kondisi sistem Anda saat ini, menggali permasalahan, dan mengidentifikasi peluang perbaikan." },
-            { step: "02", title: "Rancang Solusi", desc: "Tim arsitek kami merancang solusi teknis yang tepat sasaran — efisien dari sisi biaya, scalable, dan aman." },
-            { step: "03", title: "Eksekusi & Support", desc: "Implementasi dilakukan dengan metodologi terstruktur, diikuti monitoring berkelanjutan dan dukungan 24/7." },
+            { step: "01", title: "Konsultasi & Audit", desc: "Ceritakan kondisi sistem Anda. Kami audit, temukan masalahnya, dan kasih rekomendasi yang actionable." },
+            { step: "02", title: "Rancang Solusi", desc: "Tim kami bikin arsitektur yang pas untuk kebutuhan dan budget Anda. Bukan over-engineering, bukan juga asal jadi." },
+            { step: "03", title: "Eksekusi & Support", desc: "Kami eksekusi sampai live, lalu tetap standby untuk monitoring dan support 24/7." },
           ].map((step, idx) => (
             <div key={idx} className="relative p-8 rounded-3xl bg-white border border-stone-100 shadow-sm">
               <div className="text-6xl font-extrabold text-stone-100 mb-4 select-none">{step.step}</div>
@@ -345,7 +341,7 @@ export default function StacknScaleLanding() {
         <div className="text-center mb-12">
           <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">FAQ</p>
           <h2 className="text-4xl font-bold text-[#1A1A2E] mb-4">Pertanyaan Umum</h2>
-          <p className="text-stone-500">Jawaban singkat sebelum kita mulai berbicara lebih dalam.</p>
+          <p className="text-stone-500">Yang sering ditanya sebelum mulai kerja bareng.</p>
         </div>
         <div className="space-y-3">
           {faqs.map((faq, idx) => (
@@ -453,7 +449,7 @@ export default function StacknScaleLanding() {
               <div className="mb-4">
                 <img src="/logo-white.png" alt="StacknScale" className="h-14 w-auto" />
               </div>
-              <p className="text-stone-400 text-sm max-w-xs leading-relaxed">Sistem yang aman. Bisnis yang tenang. Kami hadir untuk jangka panjang.</p>
+              <p className="text-stone-400 text-sm max-w-xs leading-relaxed">Konsultan IT yang ngerti bisnis. Bukan cuma teknis.</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 text-sm">
               <div>
