@@ -764,8 +764,9 @@ export default function PricingPage() {
 
       {/* Header */}
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl">
-        <div className="flex items-center justify-between gap-4 pl-3 pr-2 py-2 rounded-full border border-white/60 bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_-10px_rgba(11,19,48,0.12)]">
-          <Link href="/" className="flex items-center gap-2 group">
+        <div className="relative flex items-center justify-between gap-4 pl-3 pr-2 py-2 rounded-full border border-white/60 bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_-10px_rgba(11,19,48,0.12)]">
+          {/* Left: logo */}
+          <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
             <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/10 to-sky-400/5 group-hover:from-blue-500/20 group-hover:to-sky-400/10 transition-all">
               <img src="/logo-mark.png" alt="StacknScale" className="w-8 h-8 object-contain" />
             </span>
@@ -773,13 +774,20 @@ export default function PricingPage() {
               Stack<span className="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-sky-500">n</span>Scale
             </span>
           </Link>
+
+          {/* Center: brand name on mobile, nav on desktop */}
+          <span className="sm:hidden text-[15px] font-extrabold tracking-tight text-[#0B1330] absolute left-1/2 -translate-x-1/2">
+            Stack<span className="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-sky-500">n</span>Scale
+          </span>
           <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-stone-600">
             <Link href="/" className="px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all duration-200">Home</Link>
             <Link href="/pricing" className="px-3.5 py-2 rounded-full text-[#0B1330] bg-stone-100/70 transition-all duration-200">Pricing</Link>
             <Link href="/portfolio" className="px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all duration-200">Portfolio</Link>
             <Link href="/blog" className="px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all duration-200">Blog</Link>
           </nav>
-          <div className="flex items-center gap-2">
+
+          {/* Right: CTA + hamburger */}
+          <div className="flex items-center gap-2 flex-shrink-0">
             <a href="https://wa.me/6281283031003" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex group relative items-center gap-1.5 px-5 py-2.5 text-sm font-semibold bg-gradient-to-br from-[#0B1330] to-[#1E2647] text-white rounded-full hover:shadow-[0_8px_24px_-6px_rgba(11,19,48,0.5)] hover:-translate-y-0.5 transition-all duration-300">
               <span className="relative z-10">Hubungi Kami</span>
             </a>
