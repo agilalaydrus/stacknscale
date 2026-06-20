@@ -29,6 +29,7 @@ body {
   }
   .animate-marquee {
     animation: marquee 30s linear infinite;
+    will-change: transform;
   }
   .animate-marquee:hover {
     animation-play-state: paused;
@@ -49,19 +50,21 @@ body {
   }
 
   @keyframes float-slow {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(20px, -30px); }
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(20px, -30px, 0); }
   }
   .animate-float-slow {
     animation: float-slow 14s ease-in-out infinite;
+    will-change: transform;
   }
 
   @keyframes float-slow-2 {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(-30px, 20px); }
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(-30px, 20px, 0); }
   }
   .animate-float-slow-2 {
     animation: float-slow-2 18s ease-in-out infinite;
+    will-change: transform;
   }
 
   @keyframes shimmer {
@@ -77,6 +80,24 @@ body {
     background: rgba(255, 255, 255, 0.72);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+}
+
+/* Disable heavy effects on mobile for performance */
+@media (max-width: 768px) {
+  .animate-float-slow,
+  .animate-float-slow-2 {
+    animation: none !important;
+  }
+  .backdrop-blur-xl {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+  }
+  .glass {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.95) !important;
   }
 }
 

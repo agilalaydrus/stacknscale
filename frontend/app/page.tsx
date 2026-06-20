@@ -138,9 +138,9 @@ export default function StacknScaleLanding() {
 
       {/* AMBIENT BACKDROP — soft floating aurora orbs */}
       <div aria-hidden className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 left-[10%] w-[480px] h-[480px] rounded-full bg-blue-200/40 blur-[120px] animate-float-slow" />
-        <div className="absolute top-[30%] right-[5%] w-[420px] h-[420px] rounded-full bg-sky-200/30 blur-[120px] animate-float-slow-2" />
-        <div className="absolute top-[70%] left-[20%] w-[380px] h-[380px] rounded-full bg-blue-100/50 blur-[120px] animate-float-slow" />
+        <div className="absolute -top-40 left-[10%] w-[300px] h-[300px] md:w-[480px] md:h-[480px] rounded-full bg-blue-200/40 blur-[80px] md:blur-[120px] animate-float-slow" />
+        <div className="absolute top-[30%] right-[5%] w-[260px] h-[260px] md:w-[420px] md:h-[420px] rounded-full bg-sky-200/30 blur-[80px] md:blur-[120px] animate-float-slow-2" />
+        <div className="absolute top-[70%] left-[20%] w-[240px] h-[240px] md:w-[380px] md:h-[380px] rounded-full bg-blue-100/50 blur-[80px] md:blur-[120px] animate-float-slow" />
       </div>
 
       {/* FLOATING WHATSAPP */}
@@ -151,47 +151,46 @@ export default function StacknScaleLanding() {
         className="fixed bottom-8 right-8 z-[100] flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-[0_10px_40px_-10px_rgba(37,211,102,0.6)] hover:scale-110 hover:-translate-y-1 transition-all duration-300"
         aria-label="Chat WhatsApp"
       >
-        <span className="absolute w-full h-full bg-[#25D366] rounded-full animate-ping opacity-30 -z-10"></span>
+        <span className="absolute w-full h-full bg-[#25D366] rounded-full animate-pulse opacity-30 -z-10"></span>
         <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z" />
         </svg>
       </a>
 
       {/* MOBILE MENU */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[60]">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
-          <div className="absolute top-0 right-0 w-72 h-full bg-white shadow-2xl p-6 flex flex-col">
-            <button onClick={() => setMobileMenuOpen(false)} className="self-end mb-8 p-2 rounded-full hover:bg-stone-100 transition-colors">
-              <svg className="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-            <nav className="flex flex-col gap-2">
-              {[
-                { href: "#services", label: "Layanan" },
-                { href: "/pricing", label: "Pricing", isLink: true },
-                { href: "/portfolio", label: "Portfolio", isLink: true },
-                { href: "/blog", label: "Blog", isLink: true },
-                { href: "#faq", label: "FAQ" },
-              ].map((item) => (
-                item.isLink ? (
-                  <Link key={item.label} href={item.href} onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 rounded-xl text-[#1A1A2E] font-medium hover:bg-stone-50 transition-colors">
-                    {item.label}
-                  </Link>
-                ) : (
-                  <a key={item.label} href={item.href} onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 rounded-xl text-[#1A1A2E] font-medium hover:bg-stone-50 transition-colors">
-                    {item.label}
-                  </a>
-                )
-              ))}
-            </nav>
-            <div className="mt-auto">
-              <a href="#audit-form" onClick={() => setMobileMenuOpen(false)} className="block w-full text-center py-3 bg-[#1A1A2E] text-white font-semibold rounded-xl text-sm">
-                Konsultasi
-              </a>
-            </div>
+      {/* Mobile menu — always mounted, animated via CSS */}
+      <div className={`fixed inset-0 z-[60] transition-all duration-300 ${mobileMenuOpen ? "visible" : "invisible pointer-events-none"}`}>
+        <div className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${mobileMenuOpen ? "opacity-100" : "opacity-0"}`} onClick={() => setMobileMenuOpen(false)} />
+        <div className={`absolute top-0 right-0 w-72 h-full bg-white shadow-2xl p-6 flex flex-col transition-transform duration-300 ease-out ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
+          <button onClick={() => setMobileMenuOpen(false)} className="self-end mb-8 p-2 rounded-full hover:bg-stone-100 transition-colors">
+            <svg className="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+          <nav className="flex flex-col gap-2">
+            {[
+              { href: "#services", label: "Layanan" },
+              { href: "/pricing", label: "Pricing", isLink: true },
+              { href: "/portfolio", label: "Portfolio", isLink: true },
+              { href: "/blog", label: "Blog", isLink: true },
+              { href: "#faq", label: "FAQ" },
+            ].map((item) => (
+              item.isLink ? (
+                <Link key={item.label} href={item.href} onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 rounded-xl text-[#1A1A2E] font-medium hover:bg-stone-50 transition-colors">
+                  {item.label}
+                </Link>
+              ) : (
+                <a key={item.label} href={item.href} onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 rounded-xl text-[#1A1A2E] font-medium hover:bg-stone-50 transition-colors">
+                  {item.label}
+                </a>
+              )
+            ))}
+          </nav>
+          <div className="mt-auto">
+            <a href="#audit-form" onClick={() => setMobileMenuOpen(false)} className="block w-full text-center py-3 bg-[#1A1A2E] text-white font-semibold rounded-xl text-sm">
+              Konsultasi
+            </a>
           </div>
         </div>
-      )}
+      </div>
 
       {/* HEADER — floating glass pill */}
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl">
@@ -254,7 +253,7 @@ export default function StacknScaleLanding() {
       <section className="relative pt-40 pb-28 px-6 max-w-5xl mx-auto text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 text-[11px] font-semibold tracking-[0.18em] text-blue-700 uppercase bg-white/70 backdrop-blur border border-blue-100 rounded-full shadow-sm">
           <span className="relative flex w-2 h-2">
-            <span className="absolute inline-flex w-full h-full rounded-full bg-blue-500 opacity-60 animate-ping" />
+            <span className="absolute inline-flex w-full h-full rounded-full bg-blue-500 opacity-60 animate-pulse" />
             <span className="relative inline-flex w-2 h-2 rounded-full bg-blue-500" />
           </span>
           IT &amp; Cloud Consulting Partner

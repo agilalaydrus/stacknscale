@@ -714,11 +714,10 @@ function PrivateCloudCalc() {
 
 // ========== MOBILE NAV ==========
 function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 z-[60]">
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
-      <div className="absolute top-0 right-0 w-72 h-full bg-white shadow-2xl p-6 flex flex-col">
+    <div className={`fixed inset-0 z-[60] transition-all duration-300 ${isOpen ? "visible" : "invisible pointer-events-none"}`}>
+      <div className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0"}`} onClick={onClose} />
+      <div className={`absolute top-0 right-0 w-72 h-full bg-white shadow-2xl p-6 flex flex-col transition-transform duration-300 ease-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
         <button onClick={onClose} className="self-end mb-8 p-2 rounded-full hover:bg-stone-100 transition-colors">
           <svg className="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
@@ -755,8 +754,8 @@ export default function PricingPage() {
     <div className="min-h-screen bg-[#FAFAF8] text-[#0B1330] font-sans selection:bg-blue-100 selection:text-blue-900 relative overflow-x-hidden">
       {/* Ambient backdrop */}
       <div aria-hidden className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 left-[10%] w-[480px] h-[480px] rounded-full bg-blue-200/40 blur-[120px] animate-float-slow" />
-        <div className="absolute top-[30%] right-[5%] w-[420px] h-[420px] rounded-full bg-sky-200/30 blur-[120px] animate-float-slow-2" />
+        <div className="absolute -top-40 left-[10%] w-[300px] h-[300px] md:w-[480px] md:h-[480px] rounded-full bg-blue-200/40 blur-[80px] md:blur-[120px] animate-float-slow" />
+        <div className="absolute top-[30%] right-[5%] w-[260px] h-[260px] md:w-[420px] md:h-[420px] rounded-full bg-sky-200/30 blur-[80px] md:blur-[120px] animate-float-slow-2" />
       </div>
 
       {/* Mobile Menu */}
