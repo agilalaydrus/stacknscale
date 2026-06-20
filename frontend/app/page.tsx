@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function StacknScaleLanding() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -198,7 +199,7 @@ export default function StacknScaleLanding() {
           {/* Left: logo */}
           <a href="#" className="flex items-center gap-2 group flex-shrink-0">
             <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/10 to-sky-400/5 group-hover:from-blue-500/20 group-hover:to-sky-400/10 transition-all">
-              <img src="/logo-mark.png" alt="StacknScale" className="w-8 h-8 object-contain" />
+              <Image src="/logo-mark.png" alt="StacknScale" width={32} height={32} className="w-8 h-8 object-contain" priority />
             </span>
             <span className="hidden sm:inline-block text-[15px] font-extrabold tracking-tight text-[#0B1330] pr-2">
               Stack<span className="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-sky-500">n</span>Scale
@@ -509,7 +510,7 @@ export default function StacknScaleLanding() {
           <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-12">
             <div>
               <div className="mb-4">
-                <img src="/logo-white.png" alt="StacknScale" className="h-14 w-auto" />
+                <Image src="/logo-white.png" alt="StacknScale" width={56} height={56} className="h-14 w-auto" />
               </div>
               <p className="text-stone-400 text-sm max-w-xs leading-relaxed">Konsultan IT yang ngerti bisnis. Bukan cuma teknis.</p>
             </div>

@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 // ========== CPU TIERS ==========
 type CpuTier = "epyc" | "scalable" | "standard";
@@ -767,7 +768,7 @@ export default function PricingPage() {
           {/* Left: logo */}
           <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
             <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/10 to-sky-400/5 group-hover:from-blue-500/20 group-hover:to-sky-400/10 transition-all">
-              <img src="/logo-mark.png" alt="StacknScale" className="w-8 h-8 object-contain" />
+              <Image src="/logo-mark.png" alt="StacknScale" width={32} height={32} className="w-8 h-8 object-contain" priority />
             </span>
             <span className="hidden sm:inline-block text-[15px] font-extrabold tracking-tight text-[#0B1330] pr-2">
               Stack<span className="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-sky-500">n</span>Scale
@@ -971,7 +972,7 @@ export default function PricingPage() {
       <footer className="bg-[#1A1A2E] text-white pt-12 pb-6">
         <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
-            <img src="/logo-mark-white.png" alt="StacknScale" className="h-8 w-auto" />
+            <Image src="/logo-mark-white.png" alt="StacknScale" width={32} height={32} className="h-8 w-auto" />
             <span className="text-sm font-bold">StacknScale</span>
           </div>
           <p className="text-stone-500 text-xs">&copy; {new Date().getFullYear()} StacknScale. All rights reserved.</p>
