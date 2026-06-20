@@ -3,15 +3,23 @@
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 
-// ========== VPS PRICING DATA ==========
-const VPS_PACKAGES = [
-  { name: "Pro", vcpu: 4, ram: 8, storage: 160, price: 480000, badge: null },
-  { name: "Business", vcpu: 8, ram: 16, storage: 320, price: 960000, badge: "POPULER" },
-  { name: "Enterprise", vcpu: 16, ram: 32, storage: 500, price: 1750000, badge: null },
-  { name: "Starter GPU", vcpu: 8, ram: 32, storage: 500, price: 2500000, badge: "AI/ML" },
+// ========== CPU TIERS ==========
+type CpuTier = "epyc" | "scalable" | "standard";
+const CPU_TIERS: { key: CpuTier; label: string; desc: string; multiplier: number }[] = [
+  { key: "epyc", label: "AMD Epyc", desc: "High performance, ideal untuk production", multiplier: 1.15 },
+  { key: "scalable", label: "Intel Scalable", desc: "Xeon Scalable, balanced performance", multiplier: 1.0 },
+  { key: "standard", label: "Intel Standard", desc: "Xeon Standard, cost-effective", multiplier: 0.9 },
 ];
 
-const UNIT_PRICE = { vcpu: 28500, ram: 19500, storage: 1300 };
+// ========== VPS PRICING DATA ==========
+const VPS_PACKAGES = [
+  { name: "Pro", vcpu: 4, ram: 8, storage: 100, basePrice: 1500000, badge: null },
+  { name: "Business", vcpu: 8, ram: 16, storage: 200, basePrice: 2800000, badge: "POPULER" },
+  { name: "Enterprise", vcpu: 16, ram: 32, storage: 400, basePrice: 5200000, badge: null },
+  { name: "GPU Compute", vcpu: 8, ram: 32, storage: 400, basePrice: 7500000, badge: "AI/ML" },
+];
+
+const UNIT_PRICE = { vcpu: 120000, ram: 75000, storage: 3000 };
 
 // ========== DEDICATED SERVER DATA ==========
 const DS_PACKAGES = [
@@ -27,41 +35,43 @@ const ADDON_PRODUCTS = [
     desc: "Deploy aplikasi web dengan cepat dan mudah. WordPress, Node.js, Laravel, dan lainnya siap dalam hitungan menit.",
     price: "Rp 200.000",
     icon: "rocket",
+    tags: ["1-Click Deploy", "Auto Config"],
   },
   {
     name: "Load Balancer",
     desc: "Distribusi traffic yang optimal untuk aplikasi Anda. Auto health-check dan failover otomatis.",
     price: "Rp 150.000",
     icon: "balance",
+    tags: ["Auto Failover", "Health Check"],
   },
   {
     name: "Object Storage",
     desc: "Penyimpanan file yang scalable dan aman. Kompatibel dengan S3 API untuk integrasi mudah.",
     price: "Rp 50.000",
     icon: "storage",
+    tags: ["S3 Compatible", "Unlimited Scale"],
   },
   {
     name: "Block Storage",
     desc: "Storage tambahan yang bisa dipasang ke server Anda. SSD/NVMe performance untuk database dan aplikasi berat.",
     price: "Rp 40.000",
     icon: "hdd",
+    tags: ["NVMe Ready", "Hot Attach"],
   },
 ];
 
 // ========== PLATFORM FEATURES ==========
 const PLATFORM_FEATURES = [
-  { name: "Multiple Data Center", desc: "Pilih lokasi data center terdekat untuk latensi rendah dan performa optimal." },
-  { name: "Multiclass CPU", desc: "Berbagai kelas CPU (Intel/AMD) untuk kebutuhan ringan hingga performa tinggi." },
-  { name: "Multiclass Storage", desc: "Pilih jenis storage (NVMe, SSD, HDD) sesuai kebutuhan dan budget." },
-  { name: "Firewall Management", desc: "Firewall canggih untuk open/close port VM dan melindungi aplikasi dari ancaman." },
-  { name: "Backup Otomatis", desc: "Backup terjadwal dan manual untuk melindungi data penting. Pemulihan mudah kapan saja." },
-  { name: "Snapshot", desc: "Ambil snapshot data dan konfigurasi. Rollback ke kondisi sebelumnya dalam hitungan detik." },
-  { name: "SSL Certificate", desc: "Kelola sertifikat SSL untuk enkripsi data yang aman antara pengguna dan server." },
-  { name: "SSH Key Management", desc: "Kontrol dan kelola akses ke server dengan manajemen kunci terintegrasi." },
-  { name: "Private Network", desc: "Bangun jaringan internal aman tanpa akses publik. Fleksibilitas dan kontrol penuh." },
-  { name: "Floating IP", desc: "IP publik yang bisa dipindah antar server. Ideal untuk high availability dan failover." },
-  { name: "API & Terraform", desc: "API lengkap dan dukungan Terraform untuk otomatisasi provisioning dan konfigurasi." },
-  { name: "24/7 Monitoring", desc: "Monitoring server realtime dengan alerting otomatis. Tim support standby 24 jam." },
+  { name: "Multiclass Compute", desc: "Pilih performa sesuai kebutuhan dengan opsi CPU Intel atau AMD, dan storage HDD/SSD. Upgrade, downgrade, atau ganti hardware kapan saja tanpa migrasi manual.", tags: ["Kinerja Fleksibel", "Upgrade Instan"] },
+  { name: "Flexible Connection (Floating IP)", desc: "Pindahkan IP publik antar VM untuk mendukung High Availability dan migrasi cepat tanpa downtime.", tags: ["Tanpa Downtime", "Migrasi Cepat"] },
+  { name: "Custom Private Network", desc: "Buat lebih dari satu private network untuk mengatur topologi internal sesuai kebutuhan aplikasi Anda.", tags: ["Jaringan Tertutup", "Multi-VPC"] },
+  { name: "Snapshot & Backup", desc: "Backup manual atau terjadwal, dan restore dalam satu klik dengan snapshot. Data selalu aman dan recoverable.", tags: ["Pulihkan Sekejap", "Data Terlindungi"] },
+  { name: "Firewall Management", desc: "Kelola rule inbound dan outbound langsung dari dashboard tanpa konfigurasi manual. Kontrol penuh keamanan.", tags: ["Kontrol Penuh", "Keamanan Maksimal"] },
+  { name: "SSH Key & Console Access", desc: "Login aman tanpa password dengan SSH key dan akses penuh melalui console web untuk kontrol langsung server.", tags: ["Akses Aman", "Kontrol Langsung"] },
+  { name: "OS & Template Marketplace", desc: "Deploy berbagai OS (Ubuntu, Debian, AlmaLinux, Rocky, Windows) serta template aplikasi populer dalam hitungan detik.", tags: ["Instalasi Cepat", "Pilihan Luas"] },
+  { name: "Monitoring & Alerting", desc: "Pantau resource (CPU, RAM, I/O, network) secara real-time dari dashboard. Notifikasi otomatis saat ada anomali.", tags: ["Data Real-Time", "Notifikasi Langsung"] },
+  { name: "API & Terraform", desc: "API lengkap dan dukungan Terraform untuk otomatisasi provisioning, konfigurasi, dan scaling infrastruktur.", tags: ["Full Automation", "IaC Ready"] },
+  { name: "Multiple Data Center", desc: "Pilih lokasi data center terdekat untuk mengurangi latensi dan meningkatkan performa aplikasi.", tags: ["Latensi Rendah", "Redundansi Lokasi"] },
 ];
 
 // ========== PRIVATE CLOUD PRICING LOGIC ==========
@@ -110,47 +120,86 @@ function FeatureIcon({ type }: { type: string }) {
 
 function VPSPackages() {
   const [selected, setSelected] = useState<number | null>(null);
+  const [cpuTier, setCpuTier] = useState<CpuTier>("scalable");
+
+  const tierData = CPU_TIERS.find((t) => t.key === cpuTier)!;
 
   return (
     <div>
-      <p className="text-stone-500 mb-8 text-sm">Pilih paket yang sesuai kebutuhan Anda. Semua paket include dedicated resource, SSD storage, dan support.</p>
+      <p className="text-stone-500 mb-6 text-sm">Pilih paket yang sesuai kebutuhan Anda. Semua paket include dedicated resource, SSD storage, dan support 24/7.</p>
+
+      {/* CPU Tier Selector */}
+      <div className="mb-8">
+        <label className="text-sm font-semibold text-[#1A1A2E] mb-3 block">Pilih Processor</label>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {CPU_TIERS.map((tier) => (
+            <button
+              key={tier.key}
+              onClick={() => setCpuTier(tier.key)}
+              className={`text-left p-4 rounded-xl border-2 transition-all duration-200 ${
+                cpuTier === tier.key
+                  ? "border-blue-500 bg-blue-50/50 shadow-sm"
+                  : "border-stone-200 bg-white hover:border-stone-300"
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-xs font-bold ${cpuTier === tier.key ? "bg-blue-600 text-white" : "bg-stone-100 text-stone-500"}`}>
+                  {tier.key === "epyc" ? "AMD" : "Intel"}
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-[#1A1A2E]">{tier.label}</p>
+                  <p className="text-[11px] text-stone-400">{tier.desc}</p>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {VPS_PACKAGES.map((pkg, i) => (
-          <button
-            key={i}
-            onClick={() => setSelected(i)}
-            className={`text-left p-6 rounded-2xl border-2 transition-all duration-200 ${
-              selected === i
-                ? "border-blue-500 bg-blue-50/50 shadow-lg shadow-blue-100/50"
-                : "border-stone-200 bg-white hover:border-stone-300 hover:shadow-md"
-            }`}
-          >
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm font-bold text-stone-400 uppercase tracking-wider">{pkg.name}</span>
-              {pkg.badge && (
-                <span className="text-[10px] font-bold text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full">{pkg.badge}</span>
-              )}
-            </div>
-            <div className="mb-4">
-              <span className="text-2xl font-extrabold text-[#1A1A2E]">{formatRp(pkg.price)}</span>
-              <span className="text-stone-400 text-sm">/bulan</span>
-            </div>
-            <div className="space-y-2 text-sm text-stone-600">
-              <div className="flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">C</span>
-                {pkg.vcpu} vCPU
+        {VPS_PACKAGES.map((pkg, i) => {
+          const finalPrice = Math.round(pkg.basePrice * tierData.multiplier);
+          return (
+            <button
+              key={i}
+              onClick={() => setSelected(i)}
+              className={`text-left p-6 rounded-2xl border-2 transition-all duration-200 ${
+                selected === i
+                  ? "border-blue-500 bg-blue-50/50 shadow-lg shadow-blue-100/50"
+                  : "border-stone-200 bg-white hover:border-stone-300 hover:shadow-md"
+              }`}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm font-bold text-stone-400 uppercase tracking-wider">{pkg.name}</span>
+                {pkg.badge && (
+                  <span className="text-[10px] font-bold text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full">{pkg.badge}</span>
+                )}
               </div>
-              <div className="flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">R</span>
-                {pkg.ram} GB RAM
+              <div className="mb-4">
+                <span className="text-2xl font-extrabold text-[#1A1A2E]">{formatRp(finalPrice)}</span>
+                <span className="text-stone-400 text-sm">/bulan</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">S</span>
-                {pkg.storage} GB SSD
+              <div className="space-y-2 text-sm text-stone-600">
+                <div className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">C</span>
+                  {pkg.vcpu} vCPU
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">R</span>
+                  {pkg.ram} GB RAM
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">S</span>
+                  {pkg.storage} GB SSD
+                </div>
+                <div className="flex items-center gap-2 pt-1 border-t border-stone-100 mt-1">
+                  <span className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center text-[10px] font-bold text-blue-500">P</span>
+                  <span className="text-xs text-blue-600 font-medium">{tierData.label}</span>
+                </div>
               </div>
-            </div>
-          </button>
-        ))}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -159,16 +208,39 @@ function VPSPackages() {
 function VPSCustom() {
   const [vcpu, setVcpu] = useState(4);
   const [ram, setRam] = useState(8);
-  const [storage, setStorage] = useState(160);
+  const [storage, setStorage] = useState(100);
+  const [cpuTier, setCpuTier] = useState<CpuTier>("scalable");
 
+  const tierData = CPU_TIERS.find((t) => t.key === cpuTier)!;
   const price = useMemo(
-    () => vcpu * UNIT_PRICE.vcpu + ram * UNIT_PRICE.ram + storage * UNIT_PRICE.storage,
-    [vcpu, ram, storage]
+    () => Math.round((vcpu * UNIT_PRICE.vcpu + ram * UNIT_PRICE.ram + storage * UNIT_PRICE.storage) * tierData.multiplier),
+    [vcpu, ram, storage, tierData.multiplier]
   );
 
   return (
     <div>
-      <p className="text-stone-500 mb-8 text-sm">Tentukan resource sesuai kebutuhan Anda. Harga otomatis dihitung.</p>
+      <p className="text-stone-500 mb-6 text-sm">Tentukan resource sesuai kebutuhan Anda. Harga otomatis dihitung.</p>
+
+      {/* CPU Tier */}
+      <div className="mb-8">
+        <label className="text-sm font-semibold text-[#1A1A2E] mb-3 block">Pilih Processor</label>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {CPU_TIERS.map((tier) => (
+            <button key={tier.key} onClick={() => setCpuTier(tier.key)} className={`text-left p-4 rounded-xl border-2 transition-all duration-200 ${cpuTier === tier.key ? "border-blue-500 bg-blue-50/50 shadow-sm" : "border-stone-200 bg-white hover:border-stone-300"}`}>
+              <div className="flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-xs font-bold ${cpuTier === tier.key ? "bg-blue-600 text-white" : "bg-stone-100 text-stone-500"}`}>
+                  {tier.key === "epyc" ? "AMD" : "Intel"}
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-[#1A1A2E]">{tier.label}</p>
+                  <p className="text-[11px] text-stone-400">{tier.desc}</p>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-8">
           <div>
@@ -210,7 +282,7 @@ function VPSCustom() {
               <div className="flex justify-between"><span>{storage} GB SSD</span><span>{formatRp(storage * UNIT_PRICE.storage)}</span></div>
               <div className="border-t border-white/10 pt-2 flex justify-between font-bold text-white"><span>Total</span><span>{formatRp(price)}</span></div>
             </div>
-            <a href={`https://wa.me/6281283031003?text=${encodeURIComponent(`Halo StacknScale, saya tertarik dengan VPS Custom (${vcpu}vCPU/${ram}GB RAM/${storage}GB SSD)`)}`} target="_blank" rel="noopener noreferrer" className="block w-full text-center py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-colors">
+            <a href={`https://wa.me/6281283031003?text=${encodeURIComponent(`Halo StacknScale, saya tertarik dengan VPS Custom (${tierData.label}, ${vcpu}vCPU/${ram}GB RAM/${storage}GB SSD)`)}`} target="_blank" rel="noopener noreferrer" className="block w-full text-center py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-colors">
               Order via WhatsApp
             </a>
           </div>
@@ -548,41 +620,80 @@ export default function PricingPage() {
         {activeProduct === "pc" && <PrivateCloudCalc />}
       </section>
 
-      {/* Additional Products */}
+      {/* Additional Products — card grid with tags */}
       <section className="px-6 pb-16 max-w-5xl mx-auto">
         <div className="text-center mb-10">
           <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">Add-On Services</p>
           <h2 className="text-3xl font-bold text-[#1A1A2E] mb-3">Produk Tambahan</h2>
           <p className="text-stone-500 text-sm max-w-xl mx-auto">Lengkapi infrastruktur Anda dengan layanan tambahan yang bisa diaktifkan kapan saja.</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {ADDON_PRODUCTS.map((product, i) => (
-            <div key={i} className="p-6 rounded-2xl bg-white border border-stone-200 hover:border-stone-300 hover:shadow-md transition-all duration-200">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
-                <FeatureIcon type={product.icon} />
+            <div key={i} className="group p-6 rounded-2xl bg-white border border-stone-200 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-50/50 transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-50 to-sky-50 text-blue-600 flex items-center justify-center flex-shrink-0 group-hover:from-blue-100 group-hover:to-sky-100 transition-colors">
+                  <FeatureIcon type={product.icon} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-base font-bold text-[#1A1A2E] mb-1">{product.name}</h3>
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {product.tags.map((tag, j) => (
+                      <span key={j} className="inline-flex items-center gap-1 text-[10px] font-medium text-blue-600">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-xs text-stone-500 leading-relaxed mb-3">{product.desc}</p>
+                  <p className="text-sm font-bold text-[#1A1A2E]">Start from <span className="text-blue-600">{product.price}</span><span className="text-stone-400 font-normal text-xs">/bulan</span></p>
+                </div>
               </div>
-              <h3 className="text-sm font-bold text-[#1A1A2E] mb-2">{product.name}</h3>
-              <p className="text-xs text-stone-500 leading-relaxed mb-4">{product.desc}</p>
-              <p className="text-sm font-bold text-blue-600">Start from {product.price}<span className="text-stone-400 font-normal">/bulan</span></p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Platform Features */}
-      <section className="px-6 pb-24 max-w-5xl mx-auto">
-        <div className="text-center mb-10">
-          <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">Platform</p>
-          <h2 className="text-3xl font-bold text-[#1A1A2E] mb-3">Fitur Platform Lengkap</h2>
-          <p className="text-stone-500 text-sm max-w-xl mx-auto">Semua fitur yang Anda butuhkan untuk manage infrastruktur cloud dengan mudah dan aman.</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {PLATFORM_FEATURES.map((feat, i) => (
-            <div key={i} className="p-5 rounded-xl bg-white border border-stone-200 hover:border-stone-300 hover:shadow-sm transition-all duration-200">
-              <h4 className="text-sm font-bold text-[#1A1A2E] mb-1.5">{feat.name}</h4>
-              <p className="text-xs text-stone-500 leading-relaxed">{feat.desc}</p>
-            </div>
-          ))}
+      {/* Platform Features — Maxcloud-inspired split layout */}
+      <section className="px-6 pb-24 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
+          {/* Left: sticky intro */}
+          <div className="lg:col-span-2 lg:sticky lg:top-28">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 text-[11px] font-bold text-blue-600 uppercase tracking-widest bg-blue-50 rounded-full mb-4">
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+              Fitur
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#1A1A2E] mb-4 leading-tight">Lebih dari Sekedar Cloud</h2>
+            <p className="text-stone-500 leading-relaxed mb-6">Layanan lengkap yang dirancang untuk mendukung bisnis Anda. Dari compute hingga security, semua tersedia dalam satu platform.</p>
+            <a href="https://wa.me/6281283031003" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-[#1A1A2E] text-white font-semibold text-sm rounded-xl hover:bg-blue-700 transition-colors">
+              Pelajari Lebih Lanjut
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
+            </a>
+          </div>
+
+          {/* Right: feature cards */}
+          <div className="lg:col-span-3 space-y-4">
+            {PLATFORM_FEATURES.map((feat, i) => (
+              <div key={i} className="group p-5 rounded-2xl bg-white border border-stone-200 hover:border-blue-200 hover:shadow-md transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 to-sky-50 text-blue-600 flex items-center justify-center flex-shrink-0 text-sm font-bold">
+                    {String(i + 1).padStart(2, '0')}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-sm font-bold text-[#1A1A2E] mb-1.5">{feat.name}</h4>
+                    <div className="flex flex-wrap gap-3 mb-2">
+                      {feat.tags.map((tag, j) => (
+                        <span key={j} className="inline-flex items-center gap-1 text-[11px] font-medium text-blue-600">
+                          <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-xs text-stone-500 leading-relaxed">{feat.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
