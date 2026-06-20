@@ -5,12 +5,10 @@ import Link from "next/link";
 
 // ========== VPS PRICING DATA ==========
 const VPS_PACKAGES = [
-  { name: "Starter", vcpu: 1, ram: 1, storage: 20, price: 75000 },
-  { name: "Basic", vcpu: 2, ram: 2, storage: 40, price: 150000 },
-  { name: "Standard", vcpu: 2, ram: 4, storage: 80, price: 240000 },
-  { name: "Pro", vcpu: 4, ram: 8, storage: 160, price: 480000 },
-  { name: "Business", vcpu: 8, ram: 16, storage: 320, price: 960000 },
-  { name: "Enterprise", vcpu: 16, ram: 32, storage: 500, price: 1750000 },
+  { name: "Pro", vcpu: 4, ram: 8, storage: 160, price: 480000, badge: null },
+  { name: "Business", vcpu: 8, ram: 16, storage: 320, price: 960000, badge: "POPULER" },
+  { name: "Enterprise", vcpu: 16, ram: 32, storage: 500, price: 1750000, badge: null },
+  { name: "Starter GPU", vcpu: 8, ram: 32, storage: 500, price: 2500000, badge: "AI/ML" },
 ];
 
 const UNIT_PRICE = { vcpu: 28500, ram: 19500, storage: 1300 };
@@ -61,8 +59,8 @@ function VPSPackages() {
           >
             <div className="flex items-center justify-between mb-4">
               <span className="text-sm font-bold text-stone-400 uppercase tracking-wider">{pkg.name}</span>
-              {i === 2 && (
-                <span className="text-[10px] font-bold text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full">POPULER</span>
+              {pkg.badge && (
+                <span className="text-[10px] font-bold text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full">{pkg.badge}</span>
               )}
             </div>
             <div className="mb-4">
@@ -91,9 +89,9 @@ function VPSPackages() {
 }
 
 function VPSCustom() {
-  const [vcpu, setVcpu] = useState(2);
-  const [ram, setRam] = useState(4);
-  const [storage, setStorage] = useState(80);
+  const [vcpu, setVcpu] = useState(4);
+  const [ram, setRam] = useState(8);
+  const [storage, setStorage] = useState(160);
 
   const price = useMemo(
     () => vcpu * UNIT_PRICE.vcpu + ram * UNIT_PRICE.ram + storage * UNIT_PRICE.storage,
@@ -114,14 +112,14 @@ function VPSCustom() {
             </div>
             <input
               type="range"
-              min={1}
+              min={2}
               max={32}
               value={vcpu}
               onChange={(e) => setVcpu(Number(e.target.value))}
               className="w-full h-2 bg-stone-200 rounded-full appearance-none cursor-pointer accent-blue-600"
             />
             <div className="flex justify-between text-[11px] text-stone-400 mt-1">
-              <span>1</span><span>8</span><span>16</span><span>32</span>
+              <span>2</span><span>8</span><span>16</span><span>32</span>
             </div>
           </div>
           {/* RAM */}
@@ -132,14 +130,15 @@ function VPSCustom() {
             </div>
             <input
               type="range"
-              min={1}
+              min={4}
               max={64}
+              step={4}
               value={ram}
               onChange={(e) => setRam(Number(e.target.value))}
               className="w-full h-2 bg-stone-200 rounded-full appearance-none cursor-pointer accent-blue-600"
             />
             <div className="flex justify-between text-[11px] text-stone-400 mt-1">
-              <span>1 GB</span><span>16 GB</span><span>32 GB</span><span>64 GB</span>
+              <span>4 GB</span><span>16 GB</span><span>32 GB</span><span>64 GB</span>
             </div>
           </div>
           {/* Storage */}
@@ -150,7 +149,7 @@ function VPSCustom() {
             </div>
             <input
               type="range"
-              min={20}
+              min={40}
               max={1000}
               step={20}
               value={storage}
@@ -158,7 +157,7 @@ function VPSCustom() {
               className="w-full h-2 bg-stone-200 rounded-full appearance-none cursor-pointer accent-blue-600"
             />
             <div className="flex justify-between text-[11px] text-stone-400 mt-1">
-              <span>20 GB</span><span>250 GB</span><span>500 GB</span><span>1 TB</span>
+              <span>40 GB</span><span>250 GB</span><span>500 GB</span><span>1 TB</span>
             </div>
           </div>
         </div>
@@ -469,12 +468,15 @@ export default function PricingPage() {
                   "Dedicated Resource (bukan shared)",
                   "SSD/NVMe Storage",
                   "Bandwidth Dedicated",
-                  "IP Public",
+                  "IP Public (Floating IP ready)",
                   "Full Root Access",
                   "99.9% Uptime SLA",
                   "DDoS Protection Dasar",
-                  "Technical Support",
-                  "Free Setup",
+                  "Snapshot & Backup",
+                  "Firewall Management",
+                  "Multi-VPC Support",
+                  "Technical Support 24/7",
+                  "Free Setup & Migration",
                 ].map((feat, i) => (
                   <div key={i} className="flex items-center gap-2 text-sm text-stone-600">
                     <svg className="w-4 h-4 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">

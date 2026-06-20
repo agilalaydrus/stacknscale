@@ -112,8 +112,10 @@ export default function StacknScaleLanding() {
 
   const caseStudies = [
     { tag: "Fintech / Payment", title: "Migrasi ke Cloud Lokal", metric: "37%", metricLabel: "Hemat Biaya Bulanan", desc: "Pindah dari AWS ke cloud provider lokal untuk sistem payment gateway. Latency tetap di bawah 50ms, biaya turun signifikan." },
-    { tag: "E-Commerce", title: "Infrastruktur Flash Sale", metric: "12rb", metricLabel: "Request/detik Tertangani", desc: "Redesign arsitektur biar kuat handle lonjakan traffic saat campaign besar. Sebelumnya sering 502, sekarang lancar." },
+    { tag: "Logistics / SaaS", title: "Rebuild Arsitektur Monolith", metric: "4x", metricLabel: "Lebih Cepat Deploy", desc: "Pecah monolith jadi microservices untuk platform logistik. Deploy dari 2 jam jadi 30 menit, rollback instan kalau ada masalah." },
     { tag: "Enterprise", title: "Audit Keamanan Sistem", metric: "23", metricLabel: "Celah Ditemukan & Ditutup", desc: "Full audit untuk sistem internal perusahaan. Ditemukan 23 vulnerability, termasuk 4 yang kritikal. Semua sudah di-patch." },
+    { tag: "Healthcare", title: "Private Cloud untuk Rekam Medis", metric: "100%", metricLabel: "Compliance Terpenuhi", desc: "Setup private cloud on-premise untuk rumah sakit. Data pasien tetap di internal, comply dengan regulasi kesehatan Indonesia." },
+    { tag: "PPOB / Telco", title: "Optimasi Database & Caching", metric: "68%", metricLabel: "Response Time Turun", desc: "Tuning PostgreSQL dan implementasi Redis caching untuk sistem PPOB. Response time dari 1.2s jadi 380ms di jam sibuk." },
   ];
 
   const stats = [
@@ -300,7 +302,7 @@ export default function StacknScaleLanding() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {caseStudies.map((item, idx) => (
-            <div key={idx} className="group p-8 rounded-2xl bg-white border border-stone-200 hover:border-stone-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+            <div key={idx} className={`group p-8 rounded-2xl bg-white border border-stone-200 hover:border-stone-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${caseStudies.length === 5 && idx >= 3 ? 'md:col-span-1 md:last:col-start-2' : ''}`}>
               <span className="inline-block px-3 py-1 mb-5 text-[11px] font-semibold tracking-wider text-stone-500 uppercase bg-stone-100 rounded-full">
                 {item.tag}
               </span>
