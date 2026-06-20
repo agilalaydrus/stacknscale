@@ -161,6 +161,7 @@ export default function StacknScaleLanding() {
           <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-stone-600">
             {[
               { href: "#services", label: "Layanan" },
+              { href: "/pricing", label: "Pricing", isLink: true },
               { href: "/portfolio", label: "Portfolio", isLink: true },
               { href: "/blog", label: "Blog", isLink: true },
               { href: "/content", label: "Content", isLink: true },
