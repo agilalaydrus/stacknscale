@@ -7,6 +7,7 @@ export default function StacknScaleLanding() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -111,11 +112,18 @@ export default function StacknScaleLanding() {
   ];
 
   const caseStudies = [
-    { tag: "Fintech / Payment", title: "Migrasi ke Cloud Lokal", metric: "37%", metricLabel: "Hemat Biaya Bulanan", desc: "Pindah dari AWS ke cloud provider lokal untuk sistem payment gateway. Latency tetap di bawah 50ms, biaya turun signifikan." },
-    { tag: "Logistics / SaaS", title: "Rebuild Arsitektur Monolith", metric: "4x", metricLabel: "Lebih Cepat Deploy", desc: "Pecah monolith jadi microservices untuk platform logistik. Deploy dari 2 jam jadi 30 menit, rollback instan kalau ada masalah." },
-    { tag: "Enterprise", title: "Audit Keamanan Sistem", metric: "23", metricLabel: "Celah Ditemukan & Ditutup", desc: "Full audit untuk sistem internal perusahaan. Ditemukan 23 vulnerability, termasuk 4 yang kritikal. Semua sudah di-patch." },
-    { tag: "Healthcare", title: "Private Cloud untuk Rekam Medis", metric: "100%", metricLabel: "Compliance Terpenuhi", desc: "Setup private cloud on-premise untuk rumah sakit. Data pasien tetap di internal, comply dengan regulasi kesehatan Indonesia." },
-    { tag: "PPOB / Telco", title: "Optimasi Database & Caching", metric: "68%", metricLabel: "Response Time Turun", desc: "Tuning PostgreSQL dan implementasi Redis caching untuk sistem PPOB. Response time dari 1.2s jadi 380ms di jam sibuk." },
+    { tag: "Fintech / PPOB", title: "Migrasi Payment Gateway ke Cloud Lokal", metric: "37%", metricLabel: "Hemat Biaya Bulanan", desc: "Sistem payment processing dipindah dari AWS ke cloud lokal. Latency tetap di bawah 50ms, compliance data lokal terpenuhi." },
+    { tag: "PPOB / Telco", title: "Optimasi Database Transaksi Realtime", metric: "68%", metricLabel: "Response Time Turun", desc: "Tuning PostgreSQL dan Redis caching untuk jutaan transaksi pulsa dan tagihan harian. Response dari 1.2s jadi 380ms di peak hour." },
+    { tag: "Digital Platform", title: "Arsitektur Multi-Tenant SaaS", metric: "5x", metricLabel: "Kapasitas Tenant Naik", desc: "Redesign platform digital dari single-tenant ke multi-tenant. Satu infrastruktur bisa handle 5x lebih banyak klien tanpa tambah server." },
+    { tag: "Logistics / SaaS", title: "Rebuild Monolith ke Microservices", metric: "4x", metricLabel: "Lebih Cepat Deploy", desc: "Pecah sistem monolith platform logistik jadi microservices. Deploy cycle dari 2 jam jadi 30 menit, rollback otomatis." },
+    { tag: "Enterprise", title: "Audit Keamanan Sistem Internal", metric: "23", metricLabel: "Celah Ditemukan & Ditutup", desc: "Full security audit untuk sistem ERP internal. Ditemukan 23 vulnerability termasuk 4 kritikal, semua di-patch dalam 2 minggu." },
+    { tag: "Healthcare", title: "Private Cloud Rekam Medis", metric: "100%", metricLabel: "Compliance Terpenuhi", desc: "Setup private cloud on-premise untuk rumah sakit. Data pasien tetap di jaringan internal, comply regulasi kesehatan Indonesia." },
+    { tag: "Pendidikan", title: "Infrastruktur E-Learning Scalable", metric: "15rb", metricLabel: "User Concurrent", desc: "Bangun infrastruktur LMS yang kuat handle 15.000 mahasiswa online bersamaan saat ujian. Auto-scale saat peak, hemat saat idle." },
+    { tag: "Retail / POS", title: "Migrasi Sistem POS ke Cloud", metric: "99.9%", metricLabel: "Uptime Tercapai", desc: "Migrasi sistem point-of-sale 200+ outlet dari server fisik ke cloud. Sinkronisasi data realtime antar cabang, downtime nyaris nol." },
+    { tag: "Startup", title: "Setup DevOps dari Nol", metric: "80%", metricLabel: "Waktu Deploy Berkurang", desc: "Implementasi CI/CD pipeline, container orchestration, dan monitoring untuk startup yang baru scale. Dari deploy manual ke fully automated." },
+    { tag: "Media / Publishing", title: "CDN & Caching untuk Portal Berita", metric: "3x", metricLabel: "Page Load Lebih Cepat", desc: "Optimasi arsitektur portal berita dengan CDN lokal dan edge caching. Handle traffic spike saat breaking news tanpa lambat." },
+    { tag: "Manufaktur", title: "Integrasi IoT & Dashboard Monitoring", metric: "24/7", metricLabel: "Monitoring Realtime", desc: "Koneksi 500+ sensor IoT pabrik ke dashboard monitoring realtime. Alert otomatis kalau ada anomali produksi, data tersimpan aman di cloud." },
+    { tag: "Government", title: "Dedicated Server untuk Sistem Publik", metric: "50jt+", metricLabel: "Request/bulan Terlayani", desc: "Setup dedicated server untuk layanan publik online. Full isolasi, compliance keamanan pemerintah, dan backup multi-lokasi data center." },
   ];
 
   const stats = [
@@ -149,6 +157,42 @@ export default function StacknScaleLanding() {
         </svg>
       </a>
 
+      {/* MOBILE MENU */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-[60]">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
+          <div className="absolute top-0 right-0 w-72 h-full bg-white shadow-2xl p-6 flex flex-col">
+            <button onClick={() => setMobileMenuOpen(false)} className="self-end mb-8 p-2 rounded-full hover:bg-stone-100 transition-colors">
+              <svg className="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <nav className="flex flex-col gap-2">
+              {[
+                { href: "#services", label: "Layanan" },
+                { href: "/pricing", label: "Pricing", isLink: true },
+                { href: "/portfolio", label: "Portfolio", isLink: true },
+                { href: "/blog", label: "Blog", isLink: true },
+                { href: "#faq", label: "FAQ" },
+              ].map((item) => (
+                item.isLink ? (
+                  <Link key={item.label} href={item.href} onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 rounded-xl text-[#1A1A2E] font-medium hover:bg-stone-50 transition-colors">
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a key={item.label} href={item.href} onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 rounded-xl text-[#1A1A2E] font-medium hover:bg-stone-50 transition-colors">
+                    {item.label}
+                  </a>
+                )
+              ))}
+            </nav>
+            <div className="mt-auto">
+              <a href="#audit-form" onClick={() => setMobileMenuOpen(false)} className="block w-full text-center py-3 bg-[#1A1A2E] text-white font-semibold rounded-xl text-sm">
+                Konsultasi
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* HEADER — floating glass pill */}
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl">
         <div className="flex items-center justify-between gap-4 pl-3 pr-2 py-2 rounded-full border border-white/60 bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_-10px_rgba(11,19,48,0.12)]">
@@ -180,13 +224,21 @@ export default function StacknScaleLanding() {
               )
             ))}
           </nav>
-          <a href="#audit-form" className="group relative inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold bg-gradient-to-br from-[#0B1330] to-[#1E2647] text-white rounded-full hover:shadow-[0_8px_24px_-6px_rgba(11,19,48,0.5)] hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
-            <span className="relative z-10">Konsultasi</span>
-            <svg className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-full transition-all duration-700" />
-          </a>
+          <div className="flex items-center gap-2">
+            <a href="#audit-form" className="hidden sm:inline-flex group relative items-center gap-1.5 px-5 py-2.5 text-sm font-semibold bg-gradient-to-br from-[#0B1330] to-[#1E2647] text-white rounded-full hover:shadow-[0_8px_24px_-6px_rgba(11,19,48,0.5)] hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
+              <span className="relative z-10">Konsultasi</span>
+              <svg className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-full transition-all duration-700" />
+            </a>
+            {/* Mobile hamburger */}
+            <button onClick={() => setMobileMenuOpen(true)} className="md:hidden p-2.5 rounded-full hover:bg-stone-100 transition-colors">
+              <svg className="w-5 h-5 text-stone-700" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -300,18 +352,18 @@ export default function StacknScaleLanding() {
           <h2 className="text-4xl font-bold text-[#1A1A2E] mb-4">Dampak Nyata yang Kami Berikan</h2>
           <p className="text-stone-500 max-w-xl mx-auto leading-relaxed">Bukan janji kosong. Ini hasil kerja nyata bersama klien kami.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {caseStudies.map((item, idx) => (
-            <div key={idx} className={`group p-8 rounded-2xl bg-white border border-stone-200 hover:border-stone-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${caseStudies.length === 5 && idx >= 3 ? 'md:col-span-1 md:last:col-start-2' : ''}`}>
-              <span className="inline-block px-3 py-1 mb-5 text-[11px] font-semibold tracking-wider text-stone-500 uppercase bg-stone-100 rounded-full">
+            <div key={idx} className="group p-6 rounded-2xl bg-white border border-stone-200 hover:border-stone-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <span className="inline-block px-2.5 py-1 mb-4 text-[10px] font-semibold tracking-wider text-stone-500 uppercase bg-stone-100 rounded-full">
                 {item.tag}
               </span>
-              <h3 className="text-base font-semibold text-[#1A1A2E] mb-4">{item.title}</h3>
-              <div className="flex items-baseline gap-2 mb-1">
-                <span className="text-4xl font-extrabold text-[#1A1A2E]">{item.metric}</span>
+              <h3 className="text-sm font-semibold text-[#1A1A2E] mb-3 leading-snug">{item.title}</h3>
+              <div className="flex items-baseline gap-1.5 mb-0.5">
+                <span className="text-3xl font-extrabold text-[#1A1A2E]">{item.metric}</span>
               </div>
-              <p className="text-sm font-medium text-blue-600 mb-4">{item.metricLabel}</p>
-              <p className="text-sm text-stone-500 leading-relaxed">{item.desc}</p>
+              <p className="text-xs font-medium text-blue-600 mb-3">{item.metricLabel}</p>
+              <p className="text-xs text-stone-500 leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
