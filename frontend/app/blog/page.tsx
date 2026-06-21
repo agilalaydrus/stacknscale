@@ -21,31 +21,26 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-[#F8F7F4] text-[#1A1A2E]">
 
-      {/* HEADER — floating glass pill */}
-      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl">
-        <div className="flex items-center justify-between gap-4 pl-3 pr-2 py-2 rounded-full border border-white/60 bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_-10px_rgba(11,19,48,0.12)]">
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/10 to-sky-400/5 group-hover:from-blue-500/20 transition-all">
-              <Image src="/logo-mark.png" alt="StacknScale" width={32} height={32} className="w-8 h-8 object-contain" priority />
-            </span>
-            <span className="hidden sm:inline-block text-[15px] font-extrabold tracking-tight text-[#0B1330] pr-2">
-              Stack<span className="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-sky-500">n</span>Scale
+      {/* HEADER */}
+      <header className="fixed top-0 left-0 right-0 z-50">
+        <div className="flex items-center justify-between gap-4 max-w-7xl mx-auto px-4 md:px-6 py-3 bg-white border-b border-stone-200 shadow-sm">
+          <Link href="/" className="flex items-center gap-2">
+            <Image src="/logo-mark.png" alt="StacknScale" width={28} height={28} className="w-7 h-7 object-contain" priority />
+            <span className="text-[15px] font-extrabold tracking-tight text-[#0B1330]">
+              Stack<span className="text-blue-600">n</span>Scale
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-stone-600">
-            <Link href="/blog" className="px-3.5 py-2 rounded-full text-[#0B1330] bg-stone-100/70 font-semibold">Blog</Link>
-            <Link href="/portfolio" className="px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all">Portfolio</Link>
-            <Link href="/#services" className="px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all">Layanan</Link>
+            <Link href="/blog" className="px-3 py-1.5 text-[#0B1330] font-bold">Blog</Link>
+            <Link href="/portfolio" className="px-3 py-1.5 hover:text-[#0B1330] transition-colors">Portfolio</Link>
+            <Link href="/#services" className="px-3 py-1.5 hover:text-[#0B1330] transition-colors">Layanan</Link>
           </nav>
-          <Link href="/#audit-form" className="group relative inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold bg-gradient-to-br from-[#0B1330] to-[#1E2647] text-white rounded-full hover:shadow-[0_8px_24px_-6px_rgba(11,19,48,0.5)] hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
-            <span className="relative z-10">Konsultasi</span>
-            <svg className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
+          <Link href="/#audit-form" className="inline-flex items-center px-5 py-2 text-sm font-semibold bg-[#0B1330] text-white rounded-lg hover:bg-blue-700 transition-colors">
+            Konsultasi
           </Link>
         </div>
       </header>
-      <div className="pt-24" />
+      <div className="pt-16" />
 
       <main className="max-w-6xl mx-auto px-6 py-16">
 

@@ -94,20 +94,14 @@ export default function StacknScaleLanding() {
       </a>
 
       {/* HEADER */}
-      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl">
-        <div className="relative flex items-center justify-between gap-4 pl-3 pr-2 py-2 rounded-full border border-white/60 bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_-10px_rgba(11,19,48,0.12)]">
-          <a href="#" className="flex items-center gap-2 group flex-shrink-0">
-            <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/10 to-sky-400/5 group-hover:from-blue-500/20 group-hover:to-sky-400/10 transition-all">
-              <Image src="/logo-mark.png" alt="StacknScale" width={32} height={32} className="w-8 h-8 object-contain" priority />
-            </span>
-            <span className="hidden sm:inline-block text-[15px] font-extrabold tracking-tight text-[#0B1330] pr-2">
-              Stack<span className="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-sky-500">n</span>Scale
+      <header className="fixed top-0 left-0 right-0 z-50">
+        <div className="relative flex items-center justify-between gap-4 max-w-7xl mx-auto px-4 md:px-6 py-3 bg-white border-b border-stone-200 shadow-sm">
+          <a href="#" className="flex items-center gap-2 flex-shrink-0">
+            <Image src="/logo-mark.png" alt="StacknScale" width={28} height={28} className="w-7 h-7 object-contain" priority />
+            <span className="text-[15px] font-extrabold tracking-tight text-[#0B1330]">
+              Stack<span className="text-blue-600">n</span>Scale
             </span>
           </a>
-
-          <span className="sm:hidden text-[15px] font-extrabold tracking-tight text-[#0B1330] absolute left-1/2 -translate-x-1/2">
-            Stack<span className="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-sky-500">n</span>Scale
-          </span>
           <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-stone-600">
             {[
               { href: "#services", label: "Layanan" },
@@ -118,11 +112,11 @@ export default function StacknScaleLanding() {
               { href: "#faq", label: "FAQ" },
             ].map((item) =>
               item.isLink ? (
-                <Link key={item.label} href={item.href} className="relative px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all duration-200">
+                <Link key={item.label} href={item.href} className="px-3 py-1.5 text-stone-600 hover:text-[#0B1330] transition-colors">
                   {item.label}
                 </Link>
               ) : (
-                <a key={item.label} href={item.href} className="relative px-3.5 py-2 rounded-full hover:text-[#0B1330] hover:bg-stone-100/70 transition-all duration-200">
+                <a key={item.label} href={item.href} className="px-3 py-1.5 text-stone-600 hover:text-[#0B1330] transition-colors">
                   {item.label}
                 </a>
               )
@@ -130,12 +124,8 @@ export default function StacknScaleLanding() {
           </nav>
 
           <div className="flex items-center gap-2 flex-shrink-0">
-            <a href="#audit-form" className="hidden sm:inline-flex group relative items-center gap-1.5 px-5 py-2.5 text-sm font-semibold bg-gradient-to-br from-[#0B1330] to-[#1E2647] text-white rounded-full hover:shadow-[0_8px_24px_-6px_rgba(11,19,48,0.5)] hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
-              <span className="relative z-10">Konsultasi</span>
-              <svg className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-full transition-all duration-700" />
+            <a href="#audit-form" className="hidden sm:inline-flex items-center px-5 py-2 text-sm font-semibold bg-[#0B1330] text-white rounded-lg hover:bg-blue-700 transition-colors">
+              Konsultasi
             </a>
             <MobileMenuButton />
           </div>
@@ -143,7 +133,7 @@ export default function StacknScaleLanding() {
       </header>
 
       {/* HERO */}
-      <section className="relative pt-40 pb-28 px-6 max-w-5xl mx-auto text-center">
+      <section className="relative pt-28 pb-28 px-6 max-w-5xl mx-auto text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 text-[11px] font-semibold tracking-[0.18em] text-blue-700 uppercase bg-white/70 backdrop-blur border border-blue-100 rounded-full shadow-sm">
           <span className="relative flex w-2 h-2">
             <span className="absolute inline-flex w-full h-full rounded-full bg-blue-500 opacity-60 animate-pulse" />
