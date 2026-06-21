@@ -89,10 +89,11 @@ body {
   .animate-float-slow-2 {
     animation: none !important;
   }
-  .backdrop-blur-xl {
+  /* Fix navbar: disable blur but keep opaque background */
+  header > div {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    background: rgba(255, 255, 255, 0.95) !important;
+    background: rgba(255, 255, 255, 0.97) !important;
   }
   .glass {
     backdrop-filter: none !important;
