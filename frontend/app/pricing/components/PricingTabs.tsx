@@ -14,7 +14,7 @@ const PCSection = dynamic(() => import("./PCSection"), {
 });
 
 export default function PricingTabs() {
-  const [activeProduct, setActiveProduct] = useState<"vps" | "ds" | "pc">("vps");
+  const [activeProduct, setActiveProduct] = useState<"vps" | "ds" | "pc">("ds");
 
   return (
     <>
@@ -23,7 +23,6 @@ export default function PricingTabs() {
         <div className="flex justify-center">
           <div className="inline-flex p-1 rounded-full bg-stone-100 border border-stone-200 flex-wrap justify-center gap-1">
             {([
-              { key: "vps" as const, label: "VPS" },
               { key: "ds" as const, label: "Dedicated Server" },
               { key: "pc" as const, label: "Private Cloud" },
             ]).map((tab) => (
@@ -45,7 +44,6 @@ export default function PricingTabs() {
 
       {/* Product Content */}
       <section className="px-6 pb-16 max-w-5xl mx-auto">
-        {activeProduct === "vps" && <VPSSection />}
         {activeProduct === "ds" && <DSSection />}
         {activeProduct === "pc" && <PCSection />}
       </section>
