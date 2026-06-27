@@ -3,10 +3,10 @@
 import { useState, useMemo } from "react";
 
 const DS_PACKAGES = [
-  { name: "Dell R640", cpu: "2x Xeon Gold 6138", cores: "40C/80T", ram: 256, storage: "1 TB NVMe/SSD", vm: "2 VM", bandwidth: "Unmetered 1Gbps", capacity: "1.000.000 txn/hari", os: "Linux / Windows", price: 7500000, badge: null },
-  { name: "Dell R740", cpu: "2x Xeon Gold 6248", cores: "40C/80T", ram: 512, storage: "4x 1.92TB SSD", vm: "4 VM", bandwidth: "Unmetered 1Gbps", capacity: "2.500.000 txn/hari", os: "Linux / Windows", price: 14000000, badge: "POPULER" },
-  { name: "Dell R650", cpu: "2x Xeon Gold 6330", cores: "56C/112T", ram: 512, storage: "2x 3.84TB NVMe", vm: "6 VM", bandwidth: "Unmetered 1Gbps", capacity: "5.000.000 txn/hari", os: "Linux / Windows", price: 18500000, badge: "GEN 15" },
-  { name: "Dell R750", cpu: "2x Xeon Gold 6348", cores: "56C/112T", ram: 1024, storage: "4x 3.84TB NVMe", vm: "8 VM", bandwidth: "Unmetered 10Gbps", capacity: "10.000.000 txn/hari", os: "Linux / Windows", price: 28000000, badge: "FLAGSHIP" },
+  { name: "Dell R640", cpu: "2x Xeon Gold 6138", cores: "40C/80T", ram: 256, storage: "1 TB NVMe/SSD", bandwidth: "Unmetered 1Gbps", os: "Linux / Windows", price: 7500000, badge: null },
+  { name: "Dell R740", cpu: "2x Xeon Gold 6248", cores: "40C/80T", ram: 512, storage: "4x 1.92TB SSD", bandwidth: "Unmetered 1Gbps", os: "Linux / Windows", price: 14000000, badge: "POPULER" },
+  { name: "Dell R650", cpu: "2x Xeon Gold 6330", cores: "56C/112T", ram: 512, storage: "2x 3.84TB NVMe", bandwidth: "Unmetered 1Gbps", os: "Linux / Windows", price: 18500000, badge: "GEN 15" },
+  { name: "Dell R750", cpu: "2x Xeon Gold 6348", cores: "56C/112T", ram: 1024, storage: "4x 3.84TB NVMe", bandwidth: "Unmetered 10Gbps", os: "Linux / Windows", price: 28000000, badge: "FLAGSHIP" },
 ];
 
 type DsModel = "r640" | "r740" | "r650" | "r750";
@@ -44,26 +44,7 @@ function DSPackages() {
   const [selected, setSelected] = useState<number | null>(null);
   return (
     <div>
-      <p className="text-stone-500 mb-6 text-sm">Server fisik dedicated untuk Anda. Full control, tanpa sharing resource dengan siapapun.</p>
-      <div className="mb-8 p-6 rounded-2xl bg-white border border-stone-200">
-        <h4 className="text-sm font-bold text-[#1A1A2E] mb-4 uppercase tracking-wider">Spesifikasi Minimum per Server</h4>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-sm">
-          {[
-            { label: "Processor", value: "80 Core CPU" },
-            { label: "Memory", value: "256 GB RAM" },
-            { label: "Storage", value: "1 TB NVMe/SSD" },
-            { label: "Virtual Machine", value: "2 VM per Node" },
-            { label: "Kapasitas", value: "1.000.000 txn/hari" },
-            { label: "Network", value: "1 Gbps Uplink" },
-            { label: "OS Support", value: "Linux / Windows" },
-          ].map((spec, i) => (
-            <div key={i} className="p-3 rounded-xl bg-stone-50 border border-stone-100">
-              <p className="text-[11px] text-stone-400 font-medium mb-1">{spec.label}</p>
-              <p className="text-[#1A1A2E] font-semibold">{spec.value}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <p className="text-stone-500 mb-8 text-sm">Server fisik dedicated untuk Anda. Full control, tanpa sharing resource dengan siapapun.</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {DS_PACKAGES.map((pkg, i) => (
           <button key={i} onClick={() => setSelected(i)} className={`text-left p-6 rounded-2xl border-2 transition-all duration-200 ${selected === i ? "border-blue-500 bg-blue-50/50 shadow-lg shadow-blue-100/50" : "border-stone-200 bg-white hover:border-stone-300 hover:shadow-md"}`}>
@@ -76,9 +57,7 @@ function DSPackages() {
               <div className="flex items-start gap-2"><span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500 mt-0.5 flex-shrink-0">P</span><div><span className="font-medium">{pkg.cpu}</span><br /><span className="text-xs text-stone-400">{pkg.cores}</span></div></div>
               <div className="flex items-center gap-2"><span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">R</span>{pkg.ram} GB RAM</div>
               <div className="flex items-center gap-2"><span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">S</span>{pkg.storage}</div>
-              <div className="flex items-center gap-2"><span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">V</span>{pkg.vm} per Node</div>
-              <div className="flex items-center gap-2"><span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">K</span>{pkg.capacity}</div>
-              <div className="flex items-center gap-2"><span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">N</span>{pkg.bandwidth}</div>
+              <div className="flex items-center gap-2"><span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">B</span>{pkg.bandwidth}</div>
               <div className="flex items-center gap-2"><span className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-500">O</span>{pkg.os}</div>
             </div>
           </button>
