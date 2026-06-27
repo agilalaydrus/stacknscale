@@ -37,7 +37,29 @@ export default function PCSection() {
 
   return (
     <div>
-      <p className="text-stone-500 mb-8 text-sm">Isi kebutuhan infrastruktur Anda untuk mendapat estimasi harga. Harga final ditentukan setelah konsultasi.</p>
+      <p className="text-stone-500 mb-6 text-sm">Isi kebutuhan infrastruktur Anda untuk mendapat estimasi harga. Harga final ditentukan setelah konsultasi.</p>
+
+      {/* Minimum Spec per Node */}
+      <div className="mb-8 p-6 rounded-2xl bg-white border border-stone-200">
+        <h3 className="text-sm font-bold text-[#1A1A2E] mb-4 uppercase tracking-wider">Spesifikasi Minimum per Node</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-sm">
+          {[
+            { label: "Processor", value: "80 Core CPU" },
+            { label: "Memory", value: "256 GB RAM" },
+            { label: "Storage", value: "1 TB NVMe/SSD" },
+            { label: "Virtual Machine", value: "2 VM per Node" },
+            { label: "Kapasitas", value: "1.000.000 txn/hari" },
+            { label: "Network", value: "1 Gbps Uplink" },
+            { label: "OS Support", value: "Linux / Windows" },
+          ].map((spec, i) => (
+            <div key={i} className="p-3 rounded-xl bg-stone-50 border border-stone-100">
+              <p className="text-[11px] text-stone-400 font-medium mb-1">{spec.label}</p>
+              <p className="text-[#1A1A2E] font-semibold">{spec.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-6">
           <div>
