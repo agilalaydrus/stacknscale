@@ -96,14 +96,22 @@ export default function StacknScaleLanding() {
       {/* HEADER — floating glass pill */}
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl">
         <div className="flex items-center justify-between gap-4 pl-3 pr-2 py-2 rounded-full border border-white/60 bg-white/70 backdrop-blur-xl shadow-[0_8px_30px_-10px_rgba(11,19,48,0.12)]">
-          <a href="#" className="flex items-center gap-2 group flex-shrink-0">
+          {/* Mobile: hamburger left */}
+          <div className="md:hidden flex-shrink-0">
+            <MobileMenuButton />
+          </div>
+
+          {/* Logo — centered on mobile, left on desktop */}
+          <a href="#" className="flex items-center gap-2 group flex-shrink-0 md:order-first">
             <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/10 to-sky-400/5 group-hover:from-blue-500/20 transition-all">
               <Image src="/logo-mark.png" alt="StacknScale" width={32} height={32} className="w-8 h-8 object-contain" priority />
             </span>
-            <span className="hidden sm:inline-block text-[15px] font-extrabold tracking-tight text-[#0B1330] pr-2">
+            <span className="text-[15px] font-extrabold tracking-tight text-[#0B1330] pr-2">
               Stack<span className="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-sky-500">n</span>Scale
             </span>
           </a>
+
+          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-stone-600">
             {[
               { href: "#services", label: "Layanan" },
@@ -125,6 +133,7 @@ export default function StacknScaleLanding() {
             )}
           </nav>
 
+          {/* Desktop CTA + mobile spacer for centering */}
           <div className="flex items-center gap-2 flex-shrink-0">
             <a href="#audit-form" className="hidden sm:inline-flex group relative items-center gap-1.5 px-5 py-2.5 text-sm font-semibold bg-gradient-to-br from-[#0B1330] to-[#1E2647] text-white rounded-full hover:shadow-[0_8px_24px_-6px_rgba(11,19,48,0.5)] hover:-translate-y-0.5 transition-all duration-300">
               <span>Konsultasi</span>
@@ -132,7 +141,8 @@ export default function StacknScaleLanding() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </a>
-            <MobileMenuButton />
+            {/* Mobile: invisible spacer to balance hamburger for centering logo */}
+            <span className="md:hidden w-10 h-10" aria-hidden />
           </div>
         </div>
       </header>
