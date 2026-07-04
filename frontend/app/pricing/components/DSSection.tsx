@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 
 const DS_PACKAGES = [
-  { name: "Dell R640", cpu: "2x Xeon Gold 6138", cores: "40C/80T", ram: 256, storage: "1 TB NVMe/SSD", bandwidth: "Unmetered 1Gbps", os: "Linux / Windows", price: 7500000, badge: null },
+  { name: "Dell R640", cpu: "2x Xeon Gold 6138", cores: "40C/80T", ram: 256, storage: "1 TB NVMe/SSD", bandwidth: "Unmetered 1Gbps", os: "Linux / Windows", price: 8500000, badge: null },
   { name: "Dell R740", cpu: "2x Xeon Gold 6248", cores: "40C/80T", ram: 512, storage: "4x 1.92TB SSD", bandwidth: "Unmetered 1Gbps", os: "Linux / Windows", price: 14000000, badge: "POPULER" },
   { name: "Dell R650", cpu: "2x Xeon Gold 6330", cores: "56C/112T", ram: 512, storage: "2x 3.84TB NVMe", bandwidth: "Unmetered 1Gbps", os: "Linux / Windows", price: 18500000, badge: "GEN 15" },
   { name: "Dell R750", cpu: "2x Xeon Gold 6348", cores: "56C/112T", ram: 1024, storage: "4x 3.84TB NVMe", bandwidth: "Unmetered 10Gbps", os: "Linux / Windows", price: 28000000, badge: "FLAGSHIP" },
@@ -11,7 +11,7 @@ const DS_PACKAGES = [
 
 type DsModel = "r640" | "r740" | "r650" | "r750";
 const DS_MODELS: { key: DsModel; name: string; cpu: string; cores: string; baseRam: number; maxRam: number; ramStep: number; basePrice: number; gen: string }[] = [
-  { key: "r640", name: "Dell R640", cpu: "2x Xeon Gold 6138", cores: "40C/80T", baseRam: 256, maxRam: 512, ramStep: 128, basePrice: 7500000, gen: "Gen 14" },
+  { key: "r640", name: "Dell R640", cpu: "2x Xeon Gold 6138", cores: "40C/80T", baseRam: 256, maxRam: 512, ramStep: 128, basePrice: 8500000, gen: "Gen 14" },
   { key: "r740", name: "Dell R740", cpu: "2x Xeon Gold 6248", cores: "40C/80T", baseRam: 256, maxRam: 1024, ramStep: 128, basePrice: 14000000, gen: "Gen 14" },
   { key: "r650", name: "Dell R650", cpu: "2x Xeon Gold 6330", cores: "56C/112T", baseRam: 256, maxRam: 1024, ramStep: 128, basePrice: 18500000, gen: "Gen 15" },
   { key: "r750", name: "Dell R750", cpu: "2x Xeon Gold 6348", cores: "56C/112T", baseRam: 512, maxRam: 2048, ramStep: 256, basePrice: 28000000, gen: "Gen 15" },
